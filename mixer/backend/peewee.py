@@ -7,7 +7,8 @@
 """
 from __future__ import absolute_import
 
-from peewee import * # noqa
+from peewee import *  # noqa
+
 try:
     from peewee import AutoField
 except ImportError:
@@ -18,8 +19,13 @@ import decimal
 
 from .. import mix_types as t
 from ..main import (
-    TypeMixer as BaseTypeMixer, Mixer as BaseMixer, SKIP_VALUE,
-    GenFactory as BaseFactory, partial, faker)
+    TypeMixer as BaseTypeMixer,
+    Mixer as BaseMixer,
+    SKIP_VALUE,
+    GenFactory as BaseFactory,
+    partial,
+    faker,
+)
 
 
 def get_relation(_scheme=None, _typemixer=None, **params):
@@ -80,13 +86,16 @@ class TypeMixer(BaseTypeMixer):
 
     def gen_field(self, field):
         """ Function description. """
-        if isinstance(field.scheme, AutoField)\
-                and self.__mixer and self.__mixer.params.get('commit'):
+        if (
+            isinstance(field.scheme, AutoField)
+            and self.__mixer
+            and self.__mixer.params.get("commit")
+        ):
             return field.name, SKIP_VALUE
         return super(TypeMixer, self).gen_field(field)
 
     def gen_select(self, field_name, select):
-        """ Select exists value from database.
+        """Select exists value from database.
 
         :param field_name: Name of field for generation.
 
@@ -102,7 +111,7 @@ class TypeMixer(BaseTypeMixer):
         return self.get_value(field_name, value)
 
     def is_required(self, field):
-        """ Return True is field's value should be defined.
+        """Return True is field's value should be defined.
 
         :return bool:
 
@@ -110,7 +119,7 @@ class TypeMixer(BaseTypeMixer):
         return not field.scheme.null
 
     def is_unique(self, field):
-        """ Return True is field's value should be a unique.
+        """Return True is field's value should be a unique.
 
         :return bool:
 
@@ -119,15 +128,17 @@ class TypeMixer(BaseTypeMixer):
 
     @staticmethod
     def get_default(field):
-        """ Get default value from field.
+        """Get default value from field.
 
         :return value:
 
         """
-        return field.scheme.default is None and SKIP_VALUE or field.scheme.default # noqa
+        return (
+            field.scheme.default is None and SKIP_VALUE or field.scheme.default
+        )  # noqa
 
-    def make_fabric(self, field, field_name=None, fake=False, kwargs=None): # noqa
-        """ Make values fabric for column.
+    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa
+        """Make values fabric for column.
 
         :param column: SqlAlchemy column
         :param field_name: Field name
@@ -146,13 +157,14 @@ class TypeMixer(BaseTypeMixer):
                 pass
 
         if isinstance(field, ForeignKeyField):
-            kwargs.update({'_typemixer': self, '_scheme': field})
+            kwargs.update({"_typemixer": self, "_scheme": field})
 
         return super(TypeMixer, self).make_fabric(
-            type(field), field_name=field_name, fake=fake, kwargs=kwargs)
+            type(field), field_name=field_name, fake=fake, kwargs=kwargs
+        )
 
     def guard(self, *args, **kwargs):
-        """ Look objects in database.
+        """Look objects in database.
 
         :returns: A finded object or False
 
@@ -183,16 +195,16 @@ class Mixer(BaseMixer):
 
     def __init__(self, **params):
         """Initialize the Mixer instance."""
-        params.setdefault('commit', True)
+        params.setdefault("commit", True)
         super(Mixer, self).__init__(**params)
 
     def postprocess(self, target):
-        """ Save objects in db.
+        """Save objects in db.
 
         :return value: A generated value
 
         """
-        if self.params.get('commit'):
+        if self.params.get("commit"):
             target.save()
 
         return target

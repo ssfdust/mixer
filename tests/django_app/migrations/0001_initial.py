@@ -9,243 +9,398 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0001_initial'),
-        ('contenttypes', '0001_initial'),
+        ("auth", "0001_initial"),
+        ("contenttypes", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Client',
+            name="Client",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('username', models.CharField(max_length=20)),
-                ('city', models.CharField(unique=True, max_length=20)),
-                ('name', models.CharField(max_length=50)),
-                ('created_at', models.DateField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('score', models.IntegerField(default=50)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("username", models.CharField(max_length=20)),
+                ("city", models.CharField(unique=True, max_length=20)),
+                ("name", models.CharField(max_length=50)),
+                ("created_at", models.DateField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("score", models.IntegerField(default=50)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
-                ('name', models.CharField(max_length=100)),
+                (
+                    "user_ptr",
+                    models.OneToOneField(
+                        parent_link=True,
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        to=settings.AUTH_USER_MODEL,
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
             ],
             options={
-                'abstract': False,
-                'verbose_name': 'user',
-                'verbose_name_plural': 'users',
+                "abstract": False,
+                "verbose_name": "user",
+                "verbose_name_plural": "users",
             },
-            bases=('auth.user',),
+            bases=("auth.user",),
         ),
         migrations.CreateModel(
-            name='Door',
+            name="Door",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('size', models.PositiveIntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("size", models.PositiveIntegerField()),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Hat',
+            name="Hat",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('color', models.CharField(max_length=50, choices=[(b'RD', b'red'), (b'GRN', b'green'), (b'BL', b'blue')])),
-                ('brend', models.CharField(default=b'wood', max_length=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                (
+                    "color",
+                    models.CharField(
+                        max_length=50,
+                        choices=[(b"RD", b"red"), (b"GRN", b"green"), (b"BL", b"blue")],
+                    ),
+                ),
+                ("brend", models.CharField(default=b"wood", max_length=10)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Hole',
+            name="Hole",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=16)),
-                ('size', models.SmallIntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("title", models.CharField(max_length=16)),
+                ("size", models.SmallIntegerField()),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Message',
+            name="Message",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('content', models.TextField()),
-                ('client', models.ForeignKey(to='django_app.Client', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("content", models.TextField()),
+                (
+                    "client",
+                    models.ForeignKey(to="django_app.Client", on_delete=models.CASCADE),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Number',
+            name="Number",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='ColorNumber',
+            name="ColorNumber",
             fields=[
-                ('number_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='django_app.Number', on_delete=models.CASCADE)),
-                ('color', models.CharField(max_length=20)),
+                (
+                    "number_ptr",
+                    models.OneToOneField(
+                        parent_link=True,
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="django_app.Number",
+                        on_delete=models.CASCADE,
+                    ),
+                ),
+                ("color", models.CharField(max_length=20)),
             ],
-            options={
-            },
-            bases=('django_app.number',),
+            options={},
+            bases=("django_app.number",),
         ),
         migrations.CreateModel(
-            name='PointA',
+            name="PointA",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='PointB',
+            name="PointB",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Rabbit',
+            name="Rabbit",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=16)),
-                ('username', models.CharField(unique=True, max_length=16)),
-                ('active', models.BooleanField(default=True)),
-                ('email', models.EmailField(max_length=75)),
-                ('text', models.TextField(max_length=512)),
-                ('created_at', models.DateField()),
-                ('updated_at', models.DateTimeField()),
-                ('opened_at', models.TimeField()),
-                ('percent', models.FloatField()),
-                ('money', models.IntegerField()),
-                ('ip', models.IPAddressField()),
-                ('ip6', models.GenericIPAddressField(protocol='ipv6')),
-                ('picture', models.FileField(upload_to=b'/tmp')),
-                ('some_field', models.CommaSeparatedIntegerField(max_length=12)),
-                ('funny', models.NullBooleanField()),
-                ('slug', models.SlugField()),
-                ('speed', models.DecimalField(max_digits=3, decimal_places=1)),
-                ('url', models.URLField(default=b'', null=True, blank=True)),
-                ('file_path', models.FilePathField()),
-                ('object_id', models.PositiveIntegerField()),
-                ('error_code', models.PositiveSmallIntegerField()),
-                ('custom', CustomField(max_length=24)),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType', on_delete=models.CASCADE)),
-                ('binary', models.BinaryField()),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("title", models.CharField(max_length=16)),
+                ("username", models.CharField(unique=True, max_length=16)),
+                ("active", models.BooleanField(default=True)),
+                ("email", models.EmailField(max_length=75)),
+                ("text", models.TextField(max_length=512)),
+                ("created_at", models.DateField()),
+                ("updated_at", models.DateTimeField()),
+                ("opened_at", models.TimeField()),
+                ("percent", models.FloatField()),
+                ("money", models.IntegerField()),
+                ("ip", models.IPAddressField()),
+                ("ip6", models.GenericIPAddressField(protocol="ipv6")),
+                ("picture", models.FileField(upload_to=b"/tmp")),
+                ("some_field", models.CommaSeparatedIntegerField(max_length=12)),
+                ("funny", models.NullBooleanField()),
+                ("slug", models.SlugField()),
+                ("speed", models.DecimalField(max_digits=3, decimal_places=1)),
+                ("url", models.URLField(default=b"", null=True, blank=True)),
+                ("file_path", models.FilePathField()),
+                ("object_id", models.PositiveIntegerField()),
+                ("error_code", models.PositiveSmallIntegerField()),
+                ("custom", CustomField(max_length=24)),
+                (
+                    "content_type",
+                    models.ForeignKey(
+                        to="contenttypes.ContentType", on_delete=models.CASCADE
+                    ),
+                ),
+                ("binary", models.BinaryField()),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Silk',
+            name="Silk",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('color', models.CharField(max_length=20)),
-                ('hat', models.ForeignKey(to='django_app.Hat', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("color", models.CharField(max_length=20)),
+                (
+                    "hat",
+                    models.ForeignKey(to="django_app.Hat", on_delete=models.CASCADE),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Simple',
+            name="Simple",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('value', models.IntegerField()),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("value", models.IntegerField()),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('title', models.CharField(max_length=20)),
-                ('customer', models.ForeignKey(blank=True, to='django_app.Customer', on_delete=models.CASCADE, null=True)),
-                ('messages', models.ManyToManyField(to='django_app.Message', null=True, blank=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("title", models.CharField(max_length=20)),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        blank=True,
+                        to="django_app.Customer",
+                        on_delete=models.CASCADE,
+                        null=True,
+                    ),
+                ),
+                (
+                    "messages",
+                    models.ManyToManyField(
+                        to="django_app.Message", null=True, blank=True
+                    ),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='Through',
+            name="Through",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('pointas', models.ForeignKey(to='django_app.PointA', on_delete=models.CASCADE)),
-                ('pointbs', models.ForeignKey(to='django_app.PointB', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                (
+                    "pointas",
+                    models.ForeignKey(to="django_app.PointA", on_delete=models.CASCADE),
+                ),
+                (
+                    "pointbs",
+                    models.ForeignKey(to="django_app.PointB", on_delete=models.CASCADE),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='rabbit',
-            name='one2one',
-            field=models.OneToOneField(to='django_app.Simple', on_delete=models.CASCADE),
+            model_name="rabbit",
+            name="one2one",
+            field=models.OneToOneField(
+                to="django_app.Simple", on_delete=models.CASCADE
+            ),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='pointa',
-            name='other',
-            field=models.ManyToManyField(to='django_app.PointB', through='django_app.Through'),
+            model_name="pointa",
+            name="other",
+            field=models.ManyToManyField(
+                to="django_app.PointB", through="django_app.Through"
+            ),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='number',
-            name='doors',
-            field=models.ManyToManyField(to='django_app.Door'),
+            model_name="number",
+            name="doors",
+            field=models.ManyToManyField(to="django_app.Door"),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='number',
-            name='wtf',
-            field=models.ManyToManyField(related_name='wtf_rel_+', to='django_app.Number'),
+            model_name="number",
+            name="wtf",
+            field=models.ManyToManyField(
+                related_name="wtf_rel_+", to="django_app.Number"
+            ),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='hole',
-            name='owner',
-            field=models.ForeignKey(to='django_app.Rabbit', on_delete=models.CASCADE),
+            model_name="hole",
+            name="owner",
+            field=models.ForeignKey(to="django_app.Rabbit", on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='hat',
-            name='owner',
-            field=models.ForeignKey(blank=True, to='django_app.Rabbit', on_delete=models.CASCADE, null=True),
+            model_name="hat",
+            name="owner",
+            field=models.ForeignKey(
+                blank=True, to="django_app.Rabbit", on_delete=models.CASCADE, null=True
+            ),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='door',
-            name='hole',
-            field=models.ForeignKey(to='django_app.Hole', on_delete=models.CASCADE),
+            model_name="door",
+            name="hole",
+            field=models.ForeignKey(to="django_app.Hole", on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='door',
-            name='owner',
-            field=models.ForeignKey(blank=True, to='django_app.Rabbit', on_delete=models.CASCADE, null=True),
+            model_name="door",
+            name="owner",
+            field=models.ForeignKey(
+                blank=True, to="django_app.Rabbit", on_delete=models.CASCADE, null=True
+            ),
             preserve_default=True,
         ),
     ]
-

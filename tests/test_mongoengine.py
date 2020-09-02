@@ -18,10 +18,10 @@ class Comment(EmbeddedDocument):
 class Post(Document):
     title = StringField(max_length=120, required=True)
     author = ReferenceField(User)
-    category = StringField(choices=(
-        ('S', 'Super'), ('M', 'Medium')), required=True)
+    category = StringField(choices=(("S", "Super"), ("M", "Medium")), required=True)
     size = StringField(
-        max_length=3, choices=('S', 'M', 'L', 'XL', 'XXL'), required=True)
+        max_length=3, choices=("S", "M", "L", "XL", "XXL"), required=True
+    )
     tags = ListField(StringField(max_length=30))
     comments = ListField(EmbeddedDocumentField(Comment))
     rating = DecimalField(precision=4, required=True)
@@ -29,7 +29,7 @@ class Post(Document):
     uuid = UUIDField(required=True)
     place = PointField()
 
-    meta = {'allow_inheritance': True}
+    meta = {"allow_inheritance": True}
 
 
 class Bookmark(Document):
@@ -41,7 +41,7 @@ def test_generators():
     from mixer.backend.mongoengine import get_polygon
 
     polygon = get_polygon()
-    assert polygon['coordinates']
+    assert polygon["coordinates"]
 
 
 def test_base():
@@ -73,10 +73,10 @@ def test_typemixer():
     assert post.author
     assert post.author.email
     assert post.rating
-    assert post.category in ('S', 'M')
-    assert '/' in post.url
-    assert '-' in post.uuid
-    assert 'coordinates' in post.place
+    assert post.category in ("S", "M")
+    assert "/" in post.url
+    assert "-" in post.uuid
+    assert "coordinates" in post.place
 
 
 def test_relation():
@@ -84,9 +84,8 @@ def test_relation():
 
     mixer = Mixer(commit=False)
 
-    post = mixer.blend(
-        'tests.test_mongoengine.Post', author__username='foo')
-    assert post.author.username == 'foo'
+    post = mixer.blend("tests.test_mongoengine.Post", author__username="foo")
+    assert post.author.username == "foo"
 
     bookmark = mixer.blend(Bookmark)
     assert not bookmark.bookmark

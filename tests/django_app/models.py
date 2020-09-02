@@ -32,7 +32,7 @@ class Rabbit(models.Model):
     percent = models.FloatField()
     money = models.IntegerField()
     ip = models.IPAddressField()
-    ip6 = models.GenericIPAddressField(protocol='ipv6')
+    ip6 = models.GenericIPAddressField(protocol="ipv6")
     picture = models.FileField(upload_to=settings.TMPDIR)
 
     some_field = models.CommaSeparatedIntegerField(max_length=12)
@@ -40,24 +40,25 @@ class Rabbit(models.Model):
     slug = models.SlugField()
     speed = models.DecimalField(max_digits=3, decimal_places=1)
 
-    url = models.URLField(null=True, blank=True, default='')
+    url = models.URLField(null=True, blank=True, default="")
 
     file_path = models.FilePathField()
     content_type = models.ForeignKey(ct_models.ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     error_code = models.PositiveSmallIntegerField()
     custom = CustomField(max_length=24)
-    content_object = GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey("content_type", "object_id")
 
     binary = models.BinaryField()
 
-    one2one = models.OneToOneField('django_app.Simple', on_delete=models.CASCADE)
+    one2one = models.OneToOneField("django_app.Simple", on_delete=models.CASCADE)
 
     def save(self, **kwargs):
         """ Custom save. """
 
         if not self.created_at:
             import datetime
+
             self.created_at = datetime.datetime.now()
 
         return super(Rabbit, self).save(**kwargs)
@@ -69,16 +70,19 @@ class Hole(models.Model):
     owner = models.ForeignKey(Rabbit, on_delete=models.CASCADE)
 
     # FIXME compatibility
-    rabbits = GenericRelation(Rabbit, **({'related_query_name': 'holes'}))
+    rabbits = GenericRelation(Rabbit, **({"related_query_name": "holes"}))
 
 
 class Hat(models.Model):
-    color = models.CharField(max_length=50, choices=(
-        ('RD', 'red'),
-        ('GRN', 'green'),
-        ('BL', 'blue'),
-    ))
-    brend = models.CharField(max_length=10, default='wood')
+    color = models.CharField(
+        max_length=50,
+        choices=(
+            ("RD", "red"),
+            ("GRN", "green"),
+            ("BL", "blue"),
+        ),
+    )
+    brend = models.CharField(max_length=10, default="wood")
     owner = models.ForeignKey(Rabbit, on_delete=models.CASCADE, null=True, blank=True)
 
 
@@ -95,7 +99,7 @@ class Door(models.Model):
 
 class Number(models.Model):
     doors = models.ManyToManyField(Door)
-    wtf = models.ManyToManyField('self')
+    wtf = models.ManyToManyField("self")
 
 
 class ColorNumber(Number):
@@ -119,7 +123,9 @@ class Message(models.Model):
 class Tag(models.Model):
     title = models.CharField(max_length=20)
 
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, blank=True, null=True
+    )
     messages = models.ManyToManyField(Message, null=True, blank=True)
 
 
@@ -128,8 +134,7 @@ class PointB(models.Model):
 
 
 class PointA(models.Model):
-    other = models.ManyToManyField("django_app.PointB",
-                                   through="django_app.Through")
+    other = models.ManyToManyField("django_app.PointB", through="django_app.Through")
 
 
 class Through(models.Model):

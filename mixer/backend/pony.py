@@ -25,7 +25,7 @@ class TypeMixer(BaseTypeMixer):
         return self.__scheme(**dict(values))
 
     def is_required(self, field):
-        """ Return True is field's value should be defined.
+        """Return True is field's value should be defined.
 
         :return bool:
 
@@ -33,7 +33,7 @@ class TypeMixer(BaseTypeMixer):
         return field.scheme.is_required and not field.scheme.is_pk
 
     def is_unique(self, field):
-        """ Return True is field's value should be a unique.
+        """Return True is field's value should be a unique.
 
         :return bool:
 
@@ -42,15 +42,17 @@ class TypeMixer(BaseTypeMixer):
 
     @staticmethod
     def get_default(field):
-        """ Get default value from field.
+        """Get default value from field.
 
         :return value:
 
         """
-        return field.scheme.default is None and SKIP_VALUE or field.scheme.default # noqa
+        return (
+            field.scheme.default is None and SKIP_VALUE or field.scheme.default
+        )  # noqa
 
-    def make_fabric(self, field, field_name=None, fake=False, kwargs=None): # noqa
-        """ Make values fabric for column.
+    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa
+        """Make values fabric for column.
 
         :param column: SqlAlchemy column
         :param field_name: Field name
@@ -61,7 +63,8 @@ class TypeMixer(BaseTypeMixer):
         """
         py_type = field.py_type
         return super(TypeMixer, self).make_fabric(
-            py_type, field_name=field_name, fake=fake, kwargs=kwargs)
+            py_type, field_name=field_name, fake=fake, kwargs=kwargs
+        )
 
 
 class Mixer(BaseMixer):
@@ -71,12 +74,12 @@ class Mixer(BaseMixer):
     type_mixer_cls = TypeMixer
 
     def postprocess(self, target):
-        """ Save objects in db.
+        """Save objects in db.
 
         :return value: A generated value
 
         """
-        if self.params.get('commit'):
+        if self.params.get("commit"):
             commit()
 
         return target

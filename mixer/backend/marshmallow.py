@@ -15,8 +15,14 @@ from marshmallow import fields, validate, missing
 
 from .. import mix_types as t
 from ..main import (
-    TypeMixer as BaseTypeMixer, Mixer as BaseMixer, GenFactory as BaseFactory,
-    LOGGER, faker, partial, SKIP_VALUE)
+    TypeMixer as BaseTypeMixer,
+    Mixer as BaseMixer,
+    GenFactory as BaseFactory,
+    LOGGER,
+    faker,
+    partial,
+    SKIP_VALUE,
+)
 
 
 def get_nested(_scheme=None, _typemixer=None, _many=False, **kwargs):
@@ -73,22 +79,25 @@ class TypeMixer(BaseTypeMixer):
             yield name, t.Field(field, name)
 
     def is_required(self, field):
-        """ Return True is field's value should be defined.
+        """Return True is field's value should be defined.
 
         :return bool:
 
         """
         return field.scheme.required or (
-            self.__mixer.params['required'] and not field.scheme.dump_only)
+            self.__mixer.params["required"] and not field.scheme.dump_only
+        )
 
     @staticmethod
     def get_default(field):
-        """ Get default value from field.
+        """Get default value from field.
 
         :return value:
 
         """
-        return field.scheme.default is missing and SKIP_VALUE or field.scheme.default # noqa
+        return (
+            field.scheme.default is missing and SKIP_VALUE or field.scheme.default
+        )  # noqa
 
     def populate_target(self, values):
         """ Populate target. """
@@ -97,15 +106,18 @@ class TypeMixer(BaseTypeMixer):
             LOGGER.error("Mixer-marshmallow: %r", errors)
         return data
 
-    def make_fabric(self, field, field_name=None, fake=False, kwargs=None): # noqa
+    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa
         kwargs = {} if kwargs is None else kwargs
 
         if isinstance(field, fields.Nested):
-            kwargs.update({'_typemixer': self, '_scheme': type(field.schema), '_many': field.many})
+            kwargs.update(
+                {"_typemixer": self, "_scheme": type(field.schema), "_many": field.many}
+            )
 
         if isinstance(field, fields.List):
             fab = self.make_fabric(
-                field.container, field_name=field_name, fake=fake, kwargs=kwargs)
+                field.container, field_name=field_name, fake=fake, kwargs=kwargs
+            )
             return lambda: [fab() for _ in range(faker.small_positive_integer(4))]
 
         for validator in field.validators:
@@ -113,7 +125,8 @@ class TypeMixer(BaseTypeMixer):
                 return partial(faker.random_element, validator.choices)
 
         return super(TypeMixer, self).make_fabric(
-            type(field), field_name=field_name, fake=fake, kwargs=kwargs)
+            type(field), field_name=field_name, fake=fake, kwargs=kwargs
+        )
 
 
 class Mixer(BaseMixer):
@@ -126,7 +139,7 @@ class Mixer(BaseMixer):
         super(Mixer, self).__init__(*args, **kwargs)
 
         # All fields is required by default
-        self.params.setdefault('required', True)
+        self.params.setdefault("required", True)
 
 
 mixer = Mixer()

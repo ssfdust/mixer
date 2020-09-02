@@ -5,11 +5,12 @@ from decimal import Decimal
 from datetime import datetime
 
 pytestmark = pytest.mark.skipif(
-    sys.version_info > (2, 8), reason='Pony doesnt support python3')
+    sys.version_info > (2, 8), reason="Pony doesnt support python3"
+)
 
 try:
 
-    from pony.orm import * # noqa
+    from pony.orm import *  # noqa
 
     db = Database("sqlite", ":memory:", create_db=True)
 
@@ -64,6 +65,7 @@ try:
 
     def test_backend():
         from mixer.backend.pony import mixer
+
         assert mixer
 
     @db_session
@@ -84,12 +86,13 @@ try:
         assert orderitem.quantity == 1
         assert orderitem.order
 
-        order = mixer.blend(Order, customer__name='John Snow')
-        assert order.customer.name == 'John Snow'
+        order = mixer.blend(Order, customer__name="John Snow")
+        assert order.customer.name == "John Snow"
 
         with mixer.ctx(commit=True):
             order = mixer.blend(Order)
             assert order.id
+
 
 except ImportError:
     pass

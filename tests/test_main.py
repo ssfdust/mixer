@@ -45,7 +45,6 @@ def test_typemixer_meta():
 
 
 def test_typemixer():
-
     class Scheme:
         id = int
         name = str
@@ -54,23 +53,23 @@ def test_typemixer():
         prop = Test
 
     mixer = TypeMixer(Scheme)
-    test = mixer.blend(prop__two=2, prop__one=1, prop__name='sigil', name='RJ')
+    test = mixer.blend(prop__two=2, prop__one=1, prop__name="sigil", name="RJ")
     assert test.male in (True, False)
-    assert test.name == 'RJ'
+    assert test.name == "RJ"
     assert test.prop.two == 2
-    assert test.prop.name == 'sigil'
+    assert test.prop.name == "sigil"
 
-    test = mixer.blend(prop__two=4, unknown=lambda: '?')
+    test = mixer.blend(prop__two=4, unknown=lambda: "?")
     assert test.prop.two == 4
-    assert test.unknown == '?'
+    assert test.unknown == "?"
 
 
 def test_fake():
     from mixer.main import mixer
 
     test = mixer.blend(Test, name=mixer.FAKE, title=mixer.FAKE)
-    assert ' ' in test.name
-    assert ' ' in test.title
+    assert " " in test.name
+    assert " " in test.title
 
     test = mixer.blend(Test, name=mixer.FAKE(bool))
     assert test.name in (True, False)
@@ -86,7 +85,7 @@ def test_random():
     test = mixer.blend(name=mixer.RANDOM(int))
     assert isinstance(test.name, int)
 
-    names = ['john_', 'kenn_', 'lenny_']
+    names = ["john_", "kenn_", "lenny_"]
     test = mixer.blend(name=mixer.RANDOM(*names))
     assert test.name in names
 
@@ -94,10 +93,7 @@ def test_random():
 def test_mix():
     from mixer.main import mixer
 
-    lama = type('One', tuple(), dict(
-        two=int,
-        one=type('Two', tuple(), dict(two=2.1))
-    ))
+    lama = type("One", tuple(), dict(two=int, one=type("Two", tuple(), dict(two=2.1))))
     mix = mixer.MIX.one.two
     assert mix & lama == 2.1
 
@@ -115,40 +111,41 @@ def test_mixer():
     assert Mixer.SKIP == mixer.SKIP
     try:
         Mixer.SKIP = 111
-        raise AssertionError('test are failed')
+        raise AssertionError("test are failed")
     except AttributeError:
         pass
     try:
         mixer.SKIP = 111
-        raise AssertionError('test are failed')
+        raise AssertionError("test are failed")
     except AttributeError:
         pass
 
-    gen = ('test{0}'.format(i) for i in range(500))
-    test = mixer.blend('tests.test_main.Test', name=gen)
-    assert test.name == 'test0'
+    gen = ("test{0}".format(i) for i in range(500))
+    test = mixer.blend("tests.test_main.Test", name=gen)
+    assert test.name == "test0"
 
-    name_gen = mixer.sequence(lambda c: 'test' + str(c))
+    name_gen = mixer.sequence(lambda c: "test" + str(c))
     test = mixer.blend(Test, name=name_gen)
     test = mixer.blend(Test, name=name_gen)
     test = mixer.blend(Test, name=name_gen)
-    assert test.name == 'test2'
+    assert test.name == "test2"
 
-    name_gen = mixer.sequence('test{0}')
+    name_gen = mixer.sequence("test{0}")
     test = mixer.blend(Test, name=name_gen)
     test = mixer.blend(Test, name=name_gen)
-    assert test.name == 'test1'
+    assert test.name == "test1"
 
     name_gen = mixer.sequence()
     test = mixer.blend(Test, name=name_gen)
     test = mixer.blend(Test, name=name_gen)
     assert test.name == 1
 
-    mixer.register('tests.test_main.Test',
-                   name='Michel', one=lambda: 'ID', unknown="No error here")
+    mixer.register(
+        "tests.test_main.Test", name="Michel", one=lambda: "ID", unknown="No error here"
+    )
     test = mixer.blend(Test)
-    assert test.one == 'ID'
-    assert test.name == 'Michel'
+    assert test.one == "ID"
+    assert test.name == "Michel"
 
 
 def test_mixer_cycle():
@@ -157,8 +154,8 @@ def test_mixer_cycle():
     assert len(test) == 3
     assert test[0].__class__ == Test
 
-    test = mixer.cycle(3).blend(Test, name=mixer.sequence('lama{0}'))
-    assert test[2].name == 'lama2'
+    test = mixer.cycle(3).blend(Test, name=mixer.sequence("lama{0}"))
+    assert test[2].name == "lama2"
 
 
 def test_mixer_default():
@@ -172,7 +169,7 @@ def test_invalid_scheme():
     from mixer.main import mixer
 
     with pytest.raises(ValueError):
-        mixer.blend('tests.test_main.Unknown')
+        mixer.blend("tests.test_main.Unknown")
 
 
 def test_sequence():
@@ -182,9 +179,9 @@ def test_sequence():
     assert next(gen) == 0
     assert next(gen) == 1
 
-    gen = mixer.sequence('test - {0}')
-    assert next(gen) == 'test - 0'
-    assert next(gen) == 'test - 1'
+    gen = mixer.sequence("test - {0}")
+    assert next(gen) == "test - 0"
+    assert next(gen) == "test - 1"
 
     gen = mixer.sequence(lambda c: c + 2)
     assert next(gen) == 2
@@ -200,19 +197,19 @@ def test_custom():
     mixer = Mixer()
 
     @mixer.middleware(Test)
-    def postprocess(x): # noqa
-        x.name += ' Done'
+    def postprocess(x):  # noqa
+        x.name += " Done"
         return x
 
     mixer.register(
         Test,
-        name='Mike',
+        name="Mike",
         one=mixer.faker.pyfloat,
         body=mixer.faker.date_time,
     )
 
     test = mixer.blend(Test)
-    assert test.name == 'Mike Done'
+    assert test.name == "Mike Done"
     assert isinstance(test.one, float)
     assert isinstance(test.body, datetime.datetime)
 
@@ -232,30 +229,30 @@ def test_ctx():
     mixer = Mixer()
     level = LOGGER.level
 
-    with mixer.ctx(loglevel='INFO'):
+    with mixer.ctx(loglevel="INFO"):
         mixer.blend(Test)
         assert LOGGER.level != level
 
-    with mixer.ctx(locale='ru'):
+    with mixer.ctx(locale="ru"):
         phone = mixer.faker.phone_number()
-        assert phone.startswith('+7')
+        assert phone.startswith("+7")
 
     assert LOGGER.level == level
 
 
 def test_locale():
     mixer = Mixer()
-    mixer.faker.locale = 'ru'
+    mixer.faker.locale = "ru"
 
-    with mixer.ctx(locale='it'):
+    with mixer.ctx(locale="it"):
         mixer.faker.name()
 
-    assert mixer.faker.locale == 'ru_RU'
+    assert mixer.faker.locale == "ru_RU"
 
-    with mixer.ctx(loglevel='INFO'):
+    with mixer.ctx(loglevel="INFO"):
         mixer.faker.name()
 
-    assert mixer.faker.locale == 'ru_RU'
+    assert mixer.faker.locale == "ru_RU"
 
 
 def test_silence():
@@ -265,8 +262,8 @@ def test_silence():
         pass
 
     @mixer.middleware(Test)
-    def falsed(test): # noqa
-        raise CustomException('Unhandled')
+    def falsed(test):  # noqa
+        raise CustomException("Unhandled")
 
     with pytest.raises(CustomException):
         mixer.blend(Test)

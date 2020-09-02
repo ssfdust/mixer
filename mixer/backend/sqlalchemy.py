@@ -6,24 +6,59 @@ from types import GeneratorType
 
 import decimal
 from sqlalchemy import func
+
 # from sqlalchemy.orm.interfaces import MANYTOONE
 from sqlalchemy.orm.collections import InstrumentedList
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.type_api import TypeDecorator
+
 try:
     from sqlalchemy.orm.relationships import RelationshipProperty
 except ImportError:
     from sqlalchemy.orm.properties import RelationshipProperty
 from sqlalchemy.types import (
-    BIGINT, BOOLEAN, BigInteger, Boolean, CHAR, DATE, DATETIME, DECIMAL, Date,
-    DateTime, FLOAT, Float, INT, INTEGER, Integer, NCHAR, NVARCHAR, NUMERIC,
-    Numeric, SMALLINT, SmallInteger, String, TEXT, TIME, Text, Time, Unicode,
-    UnicodeText, VARCHAR, Enum)
+    BIGINT,
+    BOOLEAN,
+    BigInteger,
+    Boolean,
+    CHAR,
+    DATE,
+    DATETIME,
+    DECIMAL,
+    Date,
+    DateTime,
+    FLOAT,
+    Float,
+    INT,
+    INTEGER,
+    Integer,
+    NCHAR,
+    NVARCHAR,
+    NUMERIC,
+    Numeric,
+    SMALLINT,
+    SmallInteger,
+    String,
+    TEXT,
+    TIME,
+    Text,
+    Time,
+    Unicode,
+    UnicodeText,
+    VARCHAR,
+    Enum,
+)
 
 from .. import mix_types as t
 from ..main import (
-    SKIP_VALUE, LOGGER, TypeMixer as BaseTypeMixer, GenFactory as BaseFactory,
-    Mixer as BaseMixer, partial, faker)
+    SKIP_VALUE,
+    LOGGER,
+    TypeMixer as BaseTypeMixer,
+    GenFactory as BaseFactory,
+    Mixer as BaseMixer,
+    partial,
+    faker,
+)
 
 
 class GenFactory(BaseFactory):
@@ -44,9 +79,7 @@ class GenFactory(BaseFactory):
         (SmallInteger, SMALLINT): t.SmallInteger,
     }
 
-    generators = {
-        Enum: None
-    }
+    generators = {Enum: None}
 
 
 class TypeMixer(BaseTypeMixer):
@@ -71,7 +104,9 @@ class TypeMixer(BaseTypeMixer):
             if isinstance(value, t.Mix):
                 mixed.append((name, value))
                 continue
-            if isinstance(getattr(target, name), InstrumentedList) and not isinstance(value, list):
+            if isinstance(getattr(target, name), InstrumentedList) and not isinstance(
+                value, list
+            ):
                 value = [value]
             setattr(target, name, value)
 
@@ -85,7 +120,7 @@ class TypeMixer(BaseTypeMixer):
 
     @staticmethod
     def get_default(field):
-        """ Get default value from field.
+        """Get default value from field.
 
         :return value: A default value or NO_VALUE
 
@@ -104,29 +139,32 @@ class TypeMixer(BaseTypeMixer):
         if column.default.is_callable:
             return column.default.arg(None)
 
-        return getattr(column.default, 'arg', SKIP_VALUE)
+        return getattr(column.default, "arg", SKIP_VALUE)
 
     def gen_select(self, field_name, select):
-        """ Select exists value from database.
+        """Select exists value from database.
 
         :param field_name: Name of field for generation.
 
         :return : None or (name, value) for later use
 
         """
-        if not self.__mixer or not self.__mixer.params.get('session'):
+        if not self.__mixer or not self.__mixer.params.get("session"):
             return field_name, SKIP_VALUE
 
         relation = self.mapper.get_property(field_name)
-        session = self.__mixer.params.get('session')
-        value = session.query(
-            relation.mapper.class_
-        ).filter(*select.choices).order_by(func.random()).first()
+        session = self.__mixer.params.get("session")
+        value = (
+            session.query(relation.mapper.class_)
+            .filter(*select.choices)
+            .order_by(func.random())
+            .first()
+        )
         return self.get_value(field_name, value)
 
     @staticmethod
     def is_unique(field):
-        """ Return True is field's value should be a unique.
+        """Return True is field's value should be a unique.
 
         :return bool:
 
@@ -142,7 +180,7 @@ class TypeMixer(BaseTypeMixer):
         return scheme.unique
 
     def is_required(self, field):
-        """ Return True is field's value should be defined.
+        """Return True is field's value should be defined.
 
         :return bool:
 
@@ -156,13 +194,16 @@ class TypeMixer(BaseTypeMixer):
 
         # According to the SQLAlchemy docs, autoincrement "only has an effect for columns which are
         # Integer derived (i.e. INT, SMALLINT, BIGINT) [and] Part of the primary key [...]".
-        autoincrement = column.autoincrement and column.primary_key and \
-            isinstance(column.type, Integer)
+        autoincrement = (
+            column.autoincrement
+            and column.primary_key
+            and isinstance(column.type, Integer)
+        )
 
         return not (column.nullable or autoincrement)
 
     def get_value(self, field_name, field_value):
-        """ Get `value` as `field_name`.
+        """Get `value` as `field_name`.
 
         :return : None or (name, value) for later use
 
@@ -173,8 +214,8 @@ class TypeMixer(BaseTypeMixer):
 
         return super(TypeMixer, self).get_value(field_name, field_value)
 
-    def make_fabric(self, column, field_name=None, fake=False, kwargs=None): # noqa
-        """ Make values fabric for column.
+    def make_fabric(self, column, field_name=None, fake=False, kwargs=None):  # noqa
+        """Make values fabric for column.
 
         :param column: SqlAlchemy column
         :param field_name: Field name
@@ -194,7 +235,9 @@ class TypeMixer(BaseTypeMixer):
         if isinstance(column, RelationshipProperty):
             Mixer = type(self)
             Model = column.mapper.class_
-            mixer = Mixer( Model, mixer=self.__mixer, fake=self.__fake, factory=self.__factory)
+            mixer = Mixer(
+                Model, mixer=self.__mixer, fake=self.__fake, factory=self.__factory
+            )
             return partial(mixer.blend, **kwargs)
 
         ftype = type(column.type)
@@ -208,26 +251,28 @@ class TypeMixer(BaseTypeMixer):
 
         if stype is str:
             fab = super(TypeMixer, self).make_fabric(
-                stype, field_name=field_name, fake=fake, kwargs=kwargs)
-            return lambda: fab()[:column.type.length]
+                stype, field_name=field_name, fake=fake, kwargs=kwargs
+            )
+            return lambda: fab()[: column.type.length]
 
         if ftype is Enum:
             return partial(faker.random_element, column.type.enums)
 
         return super(TypeMixer, self).make_fabric(
-            stype, field_name=field_name, fake=fake, kwargs=kwargs)
+            stype, field_name=field_name, fake=fake, kwargs=kwargs
+        )
 
     def guard(self, *args, **kwargs):
-        """ Look objects in database.
+        """Look objects in database.
 
         :returns: A finded object or False
 
         """
         try:
-            session = self.__mixer.params.get('session')
+            session = self.__mixer.params.get("session")
             assert session
         except (AttributeError, AssertionError):
-            raise ValueError('Cannot make request to DB.')
+            raise ValueError("Cannot make request to DB.")
 
         qs = session.query(self.mapper).filter(*args, **kwargs)
         count = qs.count()
@@ -243,30 +288,32 @@ class TypeMixer(BaseTypeMixer):
     def reload(self, obj):
         """ Reload object from database. """
         try:
-            session = self.__mixer.params.get('session')
+            session = self.__mixer.params.get("session")
             session.expire(obj)
             session.refresh(obj)
             return obj
         except (AttributeError, AssertionError):
-            raise ValueError('Cannot make request to DB.')
+            raise ValueError("Cannot make request to DB.")
 
     def populate_target(self, values):
         target = self.__scheme()
         for n, v in values:
-            if isinstance(getattr(target, n, None), InstrumentedList) and not isinstance(v, list):
+            if isinstance(
+                getattr(target, n, None), InstrumentedList
+            ) and not isinstance(v, list):
                 v = [v]
             setattr(target, n, v)
         return target
 
     def __load_fields(self):
-        """ Prepare SQLALchemyTypeMixer.
+        """Prepare SQLALchemyTypeMixer.
 
         Select columns and relations for data generation.
 
         """
         mapper = self.__scheme._sa_class_manager.mapper
         relations = set()
-        if hasattr(mapper, 'relationships'):
+        if hasattr(mapper, "relationships"):
             for rel in mapper.relationships:
                 fkeys = any(c.foreign_keys for c in rel.local_columns)
                 if not fkeys:
@@ -294,17 +341,17 @@ class Mixer(BaseMixer):
 
         """
         super(Mixer, self).__init__(**params)
-        self.params['session'] = session
-        self.params['commit'] = bool(session) and commit
+        self.params["session"] = session
+        self.params["commit"] = bool(session) and commit
 
     def postprocess(self, target):
-        """ Save objects in db.
+        """Save objects in db.
 
         :return value: A generated value
 
         """
-        if self.params.get('commit'):
-            session = self.params.get('session')
+        if self.params.get("commit"):
+            session = self.params.get("session")
             if not session:
                 LOGGER.warning("'commit' set true but session not initialized.")
             else:

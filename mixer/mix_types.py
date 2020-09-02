@@ -103,7 +103,7 @@ class UUID:
 
 class Mix(object):
 
-    """ Virtual link on the mixed object.
+    """Virtual link on the mixed object.
 
     ::
 
@@ -148,10 +148,10 @@ class Mix(object):
         return value
 
     def __str__(self):
-        return '%s/%s' % (self.__value, str(self.__parent or ''))
+        return "%s/%s" % (self.__value, str(self.__parent or ""))
 
     def __repr__(self):
-        return '<Mix %s>' % str(self)
+        return "<Mix %s>" % str(self)
 
 
 class ServiceValue(object):
@@ -174,7 +174,7 @@ class ServiceValue(object):
 
 class Field(ServiceValue):
 
-    """ Set field values.
+    """Set field values.
 
     By default the mixer generates random or fake a field values by types
     of them. But you can set some values by manual.
@@ -214,7 +214,7 @@ class Field(ServiceValue):
         return Field(self.scheme, self.name, **deepcopy(self.params))
 
     def gen_value(self, type_mixer, name, field):
-        """ Call :meth:`TypeMixer.gen_field`.
+        """Call :meth:`TypeMixer.gen_field`.
 
         :return value: A generated value
 
@@ -225,7 +225,7 @@ class Field(ServiceValue):
 # Service classes
 class Fake(ServiceValue):
 
-    """ Force a `fake` value.
+    """Force a `fake` value.
 
     If you initialized a :class:`~mixer.main.Mixer` with `fake=False` you can
     force a `fake` value for field with this attribute (mixer.FAKE).
@@ -257,7 +257,7 @@ class Fake(ServiceValue):
     """
 
     def gen_value(self, type_mixer, name, fake):
-        """ Call :meth:`TypeMixer.gen_fake`.
+        """Call :meth:`TypeMixer.gen_fake`.
 
         :return value: A generated value
 
@@ -267,7 +267,7 @@ class Fake(ServiceValue):
 
 class Random(ServiceValue):
 
-    """ Force a `random` value.
+    """Force a `random` value.
 
     If you initialized a :class:`~mixer.main.Mixer` by default mixer try to
     fill fields with `fake` data. You can user `mixer.RANDOM` for prevent this
@@ -307,10 +307,10 @@ class Random(ServiceValue):
     def __init__(self, scheme=None, *choices, **params):
         super(Random, self).__init__(scheme, *choices, **params)
         if scheme is not None:
-            self.choices += scheme,
+            self.choices += (scheme,)
 
     def gen_value(self, type_mixer, name, random):
-        """ Call :meth:`TypeMixer.gen_random`.
+        """Call :meth:`TypeMixer.gen_random`.
 
         :return value: A generated value
 
@@ -320,7 +320,7 @@ class Random(ServiceValue):
 
 class Select(Random):
 
-    """ Select values from database.
+    """Select values from database.
 
     When you generate some ORM models you can set value for related fields
     from database (select by random).
@@ -343,7 +343,7 @@ class Select(Random):
     """
 
     def gen_value(self, type_mixer, name, field):
-        """ Call :meth:`TypeMixer.gen_random`.
+        """Call :meth:`TypeMixer.gen_random`.
 
         :return value: A generated value
 

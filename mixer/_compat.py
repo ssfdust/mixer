@@ -16,7 +16,7 @@ _identity = lambda x: x
 if not PY2:
     text_type = str
     string_types = (str,)
-    integer_types = (int, )
+    integer_types = (int,)
 
     iterkeys = lambda d: iter(d.keys())
     itervalues = lambda d: iter(d.values())
@@ -42,11 +42,11 @@ else:
 
     from cStringIO import StringIO
 
-    exec('def reraise(tp, value, tb=None):\n raise tp, value, tb')
+    exec("def reraise(tp, value, tb=None):\n raise tp, value, tb")
 
     def implements_to_string(cls):
         cls.__unicode__ = cls.__str__
-        cls.__str__ = lambda x: x.__unicode__().encode('utf-8')
+        cls.__str__ = lambda x: x.__unicode__().encode("utf-8")
         return cls
 
 
@@ -63,11 +63,13 @@ def with_metaclass(meta, *bases):
     class metaclass(meta):
         __call__ = type.__call__
         __init__ = type.__init__
+
         def __new__(cls, name, this_bases, d):
             if this_bases is None:
                 return type.__new__(cls, name, (), d)
             return meta(name, bases, d)
-    return metaclass('temporary_class', None, {})
+
+    return metaclass("temporary_class", None, {})
 
 
 # Certain versions of pypy have a bug where clearing the exception stack
@@ -76,12 +78,15 @@ def with_metaclass(meta, *bases):
 # is necessary because pypy seems to forget to check if an exception
 # happend until the next bytecode instruction?
 BROKEN_PYPY_CTXMGR_EXIT = False
-if hasattr(sys, 'pypy_version_info'):
+if hasattr(sys, "pypy_version_info"):
+
     class _Mgr(object):
         def __enter__(self):
             return self
+
         def __exit__(self, *args):
             sys.exc_clear()
+
     try:
         try:
             with _Mgr():
@@ -145,15 +150,16 @@ except ImportError:
 
     def _resolve_name(name, package, level):
         """Return the absolute name of the module to be imported."""
-        if not hasattr(package, 'rindex'):
+        if not hasattr(package, "rindex"):
             raise ValueError("'package' not set to a string")
         dot = len(package)
         for x in xrange(level, 1, -1):
             try:
-                dot = package.rindex('.', 0, dot)
+                dot = package.rindex(".", 0, dot)
             except ValueError:
-                raise ValueError("attempted relative import beyond top-level "
-                                "package")
+                raise ValueError(
+                    "attempted relative import beyond top-level " "package"
+                )
         return "%s.%s" % (package[:dot], name)
 
     def import_module(name, package=None):
@@ -164,12 +170,12 @@ except ImportError:
         relative import to an absolute import.
 
         """
-        if name.startswith('.'):
+        if name.startswith("."):
             if not package:
                 raise TypeError("relative imports require the 'package' argument")
             level = 0
             for character in name:
-                if character != '.':
+                if character != ".":
                     break
                 level += 1
             name = _resolve_name(name[level:], package, level)
