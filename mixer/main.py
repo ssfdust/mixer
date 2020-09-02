@@ -22,8 +22,6 @@ from functools import partial
 from types import BuiltinFunctionType, FunctionType, GeneratorType, MethodType
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union
 
-from django.db.models.base import ModelBase
-
 from mixer.factory import GenFactoryMeta
 from mixer.mix_types import Fake, Field, Mix, Random, Select, _Deffered
 
@@ -771,7 +769,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         )
         type_mixer.middlewares.remove(middleware)
 
-    def register(self, scheme: Union[ModelBase, str, type], **params: Any) -> None:
+    def register(self, scheme: Any, **params: Any) -> None:
         """Manualy register a function as value's generator for class.field.
 
         :param scheme: Scheme for generation (class or class path)
@@ -849,7 +847,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return ProxyMixer(self, count=1, guards=(args, kwargs))
 
     def _guard(
-        self, scheme: ModelBase, guards: Tuple[Tuple[()], Dict[str, str]], **values: Any
+        self, scheme: Any, guards: Tuple[Tuple[()], Dict[str, str]], **values: Any
     ) -> Any:
         type_mixer = self.get_typemixer(scheme)
         args, kwargs = guards
