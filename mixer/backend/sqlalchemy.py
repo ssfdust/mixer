@@ -306,10 +306,7 @@ class TypeMixer(BaseTypeMixer):
         except (AttributeError, AssertionError):
             raise ValueError("Cannot make request to DB.")
 
-    def populate_target(
-        self,
-        values: Any 
-    ) -> Any:
+    def populate_target(self, values: Any) -> Any:
         target = self.__scheme()
         for n, v in values:
             if isinstance(

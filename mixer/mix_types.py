@@ -2,7 +2,7 @@
 
 from collections import OrderedDict
 from copy import deepcopy
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Callable, Dict, List, Optional, Tuple, Union
 
 if TYPE_CHECKING:
     from mixer.main import TypeMixer

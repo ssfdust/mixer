@@ -171,9 +171,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
             setattr(target, name, value)
         return target
 
-    def get_value(
-        self, name: str, value: Any
-    ) -> Tuple[str, Any]:
+    def get_value(self, name: str, value: Any) -> Tuple[str, Any]:
         """Prepare value for field with name.
 
         :return : (name, value) or None
@@ -206,9 +204,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         unique = self.is_unique(field)
         return self.gen_value(field.name, field, unique=unique)
 
-    def gen_random(
-        self, field_name: str, random: Random
-    ) -> Any:
+    def gen_random(self, field_name: str, random: Random) -> Any:
         """Generate a random value for field with `field_name`.
 
         :param field_name: Name of field for generation.

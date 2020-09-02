@@ -3,38 +3,33 @@ from __future__ import absolute_import
 
 import datetime as dt
 import decimal
+from datetime import date, time
 from os import path
 from types import GeneratorType
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.fields import (
-    GenericForeignKey,
+    GenericForeignKey,  # noqa
     GenericRelation,
-)  # noqa
+)
 from django.contrib.contenttypes.models import ContentType
 from django.core.files.base import ContentFile
 from django.core.validators import validate_ipv4_address, validate_ipv6_address
 from django.db import models
-
-from .. import mix_types as t, _compat as _
-from ..main import (
-    SKIP_VALUE,
-    TypeMixerMeta as BaseTypeMixerMeta,
-    TypeMixer as BaseTypeMixer,
-    GenFactory as BaseFactory,
-    Mixer as BaseMixer,
-    partial,
-    faker,
-)
-
-
-from datetime import date, time
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
-
 from django.db.models.fields.related import ForeignKey, ManyToManyField, OneToOneField
 
 from mixer.mix_types import Field, Select, _Deffered
+
+from .. import _compat as _
+from .. import mix_types as t
+from ..main import SKIP_VALUE
+from ..main import GenFactory as BaseFactory
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
+from ..main import TypeMixerMeta as BaseTypeMixerMeta
+from ..main import faker, partial
 
 get_contentfile = ContentFile
 
