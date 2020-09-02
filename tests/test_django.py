@@ -6,6 +6,7 @@ import decimal
 import pytest
 from django.core.management import call_command
 
+
 from .django_app.models import (
     Client,
     Customer,

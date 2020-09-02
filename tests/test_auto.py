@@ -10,9 +10,9 @@ def test_main():
 def test_django():
     from django.core.management import call_command
 
-    from .django_app.models import Rabbit
-
     from mixer.auto import mixer
+
+    from .django_app.models import Rabbit
 
     call_command("migrate", interactive=False)
 

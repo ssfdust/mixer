@@ -40,6 +40,7 @@ def nested_mixer():
 
     return NestedMixer(required=True)
 
+
 def test_mixer(mixer):
     person = mixer.blend(Person)
     assert person["name"]
@@ -57,5 +58,5 @@ def test_mixer(mixer):
 
 def test_nested_mixer(nested_mixer):
     res = nested_mixer.blend(PetList)
-    assert len(res['lst']) > 0
-    assert res['lst'][0]['name']
+    assert len(res["lst"]) > 0
+    assert res["lst"][0]["name"]
