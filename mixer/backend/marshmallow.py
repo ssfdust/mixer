@@ -19,9 +19,18 @@ from ..main import GenFactory as BaseFactory
 from ..main import Mixer as BaseMixer
 from ..main import TypeMixer as BaseTypeMixer
 from ..main import faker, partial
+from mixer.mix_types import Field
+from typing import Union
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Tuple
+from typing import Callable
+from typing import Optional
+from marshmallow.schema import Schema
 
 
-def get_nested(_scheme=None, _typemixer=None, _many=False, **kwargs):
+def get_nested(_scheme: Schema, _typemixer: Union["NestedTypeMixer", "TypeMixer", None] = None, _many: bool = False, **kwargs: Any) -> Any:
     """Create nested objects."""
     obj = NestedMixer().blend(_scheme, **kwargs)
     if _many:
@@ -69,7 +78,7 @@ class TypeMixer(BaseTypeMixer):
         for name, field in self.__scheme._declared_fields.items():
             yield name, t.Field(field, name)
 
-    def is_required(self, field):
+    def is_required(self, field: Field) -> bool:
         """Return True is field's value should be defined.
 
         :return bool:
@@ -80,7 +89,7 @@ class TypeMixer(BaseTypeMixer):
         )
 
     @staticmethod
-    def get_default(field):
+    def get_default(field: Field) -> Any:
         """Get default value from field.
 
         :return value:
@@ -90,12 +99,12 @@ class TypeMixer(BaseTypeMixer):
             field.scheme.default is missing and SKIP_VALUE or field.scheme.default
         )  # noqa
 
-    def populate_target(self, values):
+    def populate_target(self, values: Any) -> Any:
         """ Populate target. """
         data = self.__scheme().load(dict(values))
         return data
 
-    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa
+    def make_fabric(self, field: Any, field_name: str = None, fake: bool = False, kwargs: Optional[Any] = None) -> Callable:  # noqa
         kwargs = {} if kwargs is None else kwargs
 
         if isinstance(field, fields.Nested):
@@ -119,7 +128,7 @@ class TypeMixer(BaseTypeMixer):
 
 
 class NestedTypeMixer(TypeMixer):
-    def populate_target(self, values):
+    def populate_target(self, values: Any) -> Dict[str, Any]:
         """ Populate target. """
         return dict(values)
 
@@ -130,7 +139,7 @@ class Mixer(BaseMixer):
 
     type_mixer_cls = TypeMixer
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super(Mixer, self).__init__(*args, **kwargs)
 
         # All fields is required by default

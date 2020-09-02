@@ -404,7 +404,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         return SKIP_VALUE
 
     @staticmethod
-    def guard(*args, **kwargs):
+    def guard(*args: Any, **kwargs: Any) -> bool:
         """Look in storage.
 
         :returns: False
@@ -412,7 +412,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         """
         return False
 
-    def reload(self, obj):
+    def reload(self, obj: Any) -> Any:
         """ Reload the object from storage. """
         return deepcopy(obj)
 
@@ -764,7 +764,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
 
         return wrapper
 
-    def unregister_middleware(self, scheme, middleware):
+    def unregister_middleware(self, scheme: Any, middleware: Any) -> None:
         """Remove middleware from scheme"""
         type_mixer = self.type_mixer_cls(
             scheme, mixer=self, fake=self.params.get("fake"), factory=self.__factory

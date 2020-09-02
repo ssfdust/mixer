@@ -1,0 +1,792 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ALLSPHINXOPTS	Makefile	/^ALLSPHINXOPTS= -d $(BUILDDIR)\/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .$/;"	m
+AugmentedType	tests/test_sqlalchemy.py	/^class AugmentedType(types.TypeDecorator):$/;"	c
+BASE	tests/test_sqlalchemy.py	/^BASE = declarative_base()$/;"	v
+BROKEN_PYPY_CTXMGR_EXIT	mixer/_compat.py	/^        BROKEN_PYPY_CTXMGR_EXIT = True$/;"	v	class:with_metaclass._Mgr
+BROKEN_PYPY_CTXMGR_EXIT	mixer/_compat.py	/^BROKEN_PYPY_CTXMGR_EXIT = False$/;"	v
+BUILDDIR	Makefile	/^BUILDDIR=_build$/;"	m
+BigInteger	mixer/mix_types.py	/^class BigInteger:$/;"	c
+Bookmark	tests/test_mongoengine.py	/^class Bookmark(Document):$/;"	c
+CartItem	tests/test_pony.py	/^    class CartItem(db.Entity):$/;"	c
+Category	tests/test_pony.py	/^    class Category(db.Entity):$/;"	c
+Client	tests/django_app/models.py	/^class Client(models.Model):$/;"	c
+ColorNumber	tests/django_app/models.py	/^class ColorNumber(Number):$/;"	c
+Comment	tests/test_mongoengine.py	/^class Comment(EmbeddedDocument):$/;"	c
+CustomException	tests/test_main.py	/^    class CustomException(Exception):$/;"	c	function:test_silence
+CustomField	tests/django_app/models.py	/^class CustomField(models.CharField):$/;"	c
+Customer	tests/django_app/models.py	/^class Customer(User):$/;"	c
+Customer	tests/test_pony.py	/^    class Customer(db.Entity):$/;"	c
+DATABASES	tests/django_app/settings.py	/^DATABASES = {$/;"	v
+DEBUG	tests/django_app/settings.py	/^DEBUG = True$/;"	v
+Door	tests/django_app/models.py	/^class Door(models.Model):$/;"	c
+ENGINE	tests/test_sqlalchemy.py	/^ENGINE = create_engine("sqlite:\/\/\/:memory:")$/;"	v
+EmailString	mixer/mix_types.py	/^class EmailString:$/;"	c
+FAKE	mixer/main.py	/^    FAKE = property(lambda cls: t.Fake())$/;"	v	class:_MetaMixer
+FAKE	mixer/main.py	/^    FAKE = property(lambda s: Mixer.FAKE)$/;"	v	class:TypeMixer
+FAKE	mixer/main.py	/^    def FAKE(self, *args: Any, **kwargs: Any) -> Fake:$/;"	m	class:Mixer
+Fake	mixer/mix_types.py	/^class Fake(ServiceValue):$/;"	c
+Field	mixer/mix_types.py	/^class Field(ServiceValue):$/;"	c
+GENRES	mixer/_faker.py	/^GENRES = ($/;"	v
+GenFactory	mixer/backend/django.py	/^class GenFactory(BaseFactory):$/;"	c
+GenFactory	mixer/backend/marshmallow.py	/^class GenFactory(BaseFactory):$/;"	c
+GenFactory	mixer/backend/mongoengine.py	/^class GenFactory(BaseFactory):$/;"	c
+GenFactory	mixer/backend/peewee.py	/^class GenFactory(BaseFactory):$/;"	c
+GenFactory	mixer/backend/sqlalchemy.py	/^class GenFactory(BaseFactory):$/;"	c
+GenFactory	mixer/factory.py	/^class GenFactory(_.with_metaclass(GenFactoryMeta)):$/;"	c
+GenFactoryMeta	mixer/factory.py	/^class GenFactoryMeta(type):$/;"	c
+Hat	tests/django_app/models.py	/^class Hat(models.Model):$/;"	c
+Hole	tests/django_app/models.py	/^class Hole(models.Model):$/;"	c
+HostnameString	mixer/mix_types.py	/^class HostnameString:$/;"	c
+INSTALLED_APPS	tests/django_app/settings.py	/^INSTALLED_APPS = ($/;"	v
+IP4String	mixer/mix_types.py	/^class IP4String:$/;"	c
+IP6String	mixer/mix_types.py	/^class IP6String:$/;"	c
+IPString	mixer/mix_types.py	/^class IPString:$/;"	c
+LOGGER	mixer/main.py	/^LOGGER = logging.getLogger("mixer")$/;"	v
+LOGLEVEL	mixer/main.py	/^LOGLEVEL = logging.WARN$/;"	v
+MEDIA_ROOT	tests/django_app/settings.py	/^MEDIA_ROOT = TMPDIR$/;"	v
+MIDDLEWARE_CLASSES	tests/django_app/settings.py	/^MIDDLEWARE_CLASSES = ($/;"	v
+MIX	mixer/main.py	/^    MIX = property(lambda cls: t.Mix())$/;"	v	class:_MetaMixer
+MIX	mixer/main.py	/^    MIX = property(lambda s: Mixer.MIX)$/;"	v	class:TypeMixer
+MIX	mixer/main.py	/^    def MIX(self, *args: Any, **kwargs: Any) -> Mix:$/;"	m	class:Mixer
+MOCK_FILE	mixer/backend/django.py	/^MOCK_FILE = path.abspath($/;"	v
+MOCK_IMAGE	mixer/backend/django.py	/^MOCK_IMAGE = path.abspath($/;"	v
+MODULE	Makefile	/^MODULE=mixer$/;"	m
+MarkovChain	mixer/markov.py	/^class MarkovChain(object):$/;"	c
+Message	tests/django_app/models.py	/^class Message(models.Model):$/;"	c
+Message	tests/test_flask.py	/^class Message(db.Model):$/;"	c
+Meta	tests/test_peewee.py	/^    class Meta:$/;"	c	class:Person
+Meta	tests/test_peewee.py	/^    class Meta:$/;"	c	class:Pet
+Migration	tests/django_app/migrations/0001_initial.py	/^class Migration(migrations.Migration):$/;"	c
+Mix	mixer/mix_types.py	/^class Mix(object):$/;"	c
+Mixer	mixer/backend/django.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/flask.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/marshmallow.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/mongoengine.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/peewee.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/pony.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/backend/sqlalchemy.py	/^class Mixer(BaseMixer):$/;"	c
+Mixer	mixer/main.py	/^class Mixer(_.with_metaclass(_MetaMixer)):$/;"	c
+MixerGenerator	mixer/_faker.py	/^class MixerGenerator(Generator):$/;"	c
+MixerProvider	mixer/_faker.py	/^class MixerProvider(BaseProvider):$/;"	c
+MixerProxy	mixer/auto.py	/^class MixerProxy(object):$/;"	c
+MyFactory	tests/test_django.py	/^    class MyFactory(GenFactory):$/;"	c	function:test_custom
+MyFactory	tests/test_main.py	/^    class MyFactory(GenFactory):$/;"	c	function:test_custom
+NestedMixer	mixer/backend/marshmallow.py	/^class NestedMixer(Mixer):$/;"	c
+NestedTypeMixer	mixer/backend/marshmallow.py	/^class NestedTypeMixer(TypeMixer):$/;"	c
+Node	tests/test_flask.py	/^class Node(db.Model):$/;"	c
+NullOrBoolean	mixer/mix_types.py	/^class NullOrBoolean:$/;"	c
+Number	tests/django_app/models.py	/^class Number(models.Model):$/;"	c
+Order	tests/test_pony.py	/^    class Order(db.Entity):$/;"	c
+OrderItem	tests/test_pony.py	/^    class OrderItem(db.Entity):$/;"	c
+OrderedDict	mixer/_compat.py	/^    class OrderedDict(dict, DictMixin):$/;"	c	function:with_metaclass
+PUNCTUATION	mixer/markov.py	/^PUNCTUATION = re.compile(r"([\\.,;!?])")$/;"	v
+Person	tests/test_marshmallow.py	/^class Person(ma.Schema):$/;"	c
+Person	tests/test_peewee.py	/^class Person(Model):$/;"	c
+Pet	tests/test_marshmallow.py	/^class Pet(ma.Schema):$/;"	c
+Pet	tests/test_peewee.py	/^class Pet(Model):$/;"	c
+PetList	tests/test_marshmallow.py	/^class PetList(ma.Schema):$/;"	c
+PointA	tests/django_app/models.py	/^class PointA(models.Model):$/;"	c
+PointB	tests/django_app/models.py	/^class PointB(models.Model):$/;"	c
+PositiveDecimal	mixer/mix_types.py	/^class PositiveDecimal:$/;"	c
+PositiveInteger	mixer/mix_types.py	/^class PositiveInteger:$/;"	c
+PositiveSmallInteger	mixer/mix_types.py	/^class PositiveSmallInteger:$/;"	c
+Post	tests/test_mongoengine.py	/^class Post(Document):$/;"	c
+Product	tests/test_pony.py	/^    class Product(db.Entity):$/;"	c
+Profile	tests/test_flask.py	/^class Profile(db.Model):$/;"	c
+Profile	tests/test_sqlalchemy.py	/^class Profile(BASE):$/;"	c
+ProfileNonIncremental	tests/test_sqlalchemy.py	/^class ProfileNonIncremental(BASE):$/;"	c
+ProxyMixer	mixer/main.py	/^class ProxyMixer:$/;"	c
+RANDOM	mixer/main.py	/^    RANDOM = property(lambda cls: t.Random())$/;"	v	class:_MetaMixer
+RANDOM	mixer/main.py	/^    RANDOM = property(lambda s: Mixer.RANDOM)$/;"	v	class:TypeMixer
+RANDOM	mixer/main.py	/^    def RANDOM(self, *args: Any, **kwargs: Any) -> Random:$/;"	m	class:Mixer
+ROOT_URLCONF	tests/django_app/settings.py	/^ROOT_URLCONF = "tests.django_app.urls"$/;"	v
+Rabbit	tests/django_app/models.py	/^class Rabbit(models.Model):$/;"	c
+Random	mixer/mix_types.py	/^class Random(ServiceValue):$/;"	c
+Role	tests/test_flask.py	/^class Role(db.Model):$/;"	c
+Role	tests/test_sqlalchemy.py	/^class Role(BASE):$/;"	c
+SECRET_KEY	tests/django_app/settings.py	/^SECRET_KEY = "KeepMeSecret"$/;"	v
+SELECT	mixer/main.py	/^    SELECT = property(lambda cls: t.Select())$/;"	v	class:_MetaMixer
+SELECT	mixer/main.py	/^    SELECT = property(lambda s: Mixer.SELECT)$/;"	v	class:TypeMixer
+SELECT	mixer/main.py	/^    def SELECT(self, *args: Any, **kwargs: Any) -> Select:$/;"	m	class:Mixer
+SESSION	tests/test_sqlalchemy.py	/^SESSION = scoped_session(sessionmaker(bind=ENGINE))$/;"	v
+SKIP	mixer/main.py	/^    SKIP = property(lambda cls: SKIP_VALUE)$/;"	v	class:_MetaMixer
+SKIP	mixer/main.py	/^    SKIP = property(lambda s: Mixer.SKIP)$/;"	v	class:TypeMixer
+SKIP	mixer/main.py	/^    def SKIP(self, *args: Any, **kwargs: Any) -> object:$/;"	m	class:Mixer
+SKIP_VALUE	mixer/main.py	/^SKIP_VALUE = object()$/;"	v
+SMALLINT	mixer/_faker.py	/^SMALLINT = 32768  # Safe in most databases according to Django docs$/;"	v
+SPHINXBUILD	Makefile	/^SPHINXBUILD=sphinx-build$/;"	m
+Scheme	tests/test_main.py	/^    class Scheme:$/;"	c	function:test_typemixer
+Select	mixer/mix_types.py	/^class Select(Random):$/;"	c
+ServiceValue	mixer/mix_types.py	/^class ServiceValue(object):$/;"	c
+Silk	tests/django_app/models.py	/^class Silk(models.Model):$/;"	c
+Simple	tests/django_app/models.py	/^class Simple(models.Model):$/;"	c
+SmallInteger	mixer/mix_types.py	/^class SmallInteger:$/;"	c
+StringContinuationImpossibleError	mixer/markov.py	/^class StringContinuationImpossibleError(Exception):$/;"	c
+TEST	Makefile	/^TEST=tests$/;"	m
+TMPDIR	tests/django_app/settings.py	/^TMPDIR = tempfile.mkdtemp()$/;"	v
+Tag	tests/django_app/models.py	/^class Tag(models.Model):$/;"	c
+Test	tests/test_main.py	/^class Test:$/;"	c
+Test	tests/test_sqlalchemy.py	/^    class Test(base):$/;"	c	function:test_postgresql
+Text	mixer/mix_types.py	/^class Text:$/;"	c
+Through	tests/django_app/models.py	/^class Through(models.Model):$/;"	c
+TypeMixer	mixer/backend/django.py	/^class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):$/;"	c
+TypeMixer	mixer/backend/marshmallow.py	/^class TypeMixer(BaseTypeMixer):$/;"	c
+TypeMixer	mixer/backend/mongoengine.py	/^class TypeMixer(BaseTypeMixer):$/;"	c
+TypeMixer	mixer/backend/peewee.py	/^class TypeMixer(BaseTypeMixer):$/;"	c
+TypeMixer	mixer/backend/pony.py	/^class TypeMixer(BaseTypeMixer):$/;"	c
+TypeMixer	mixer/backend/sqlalchemy.py	/^class TypeMixer(BaseTypeMixer):$/;"	c
+TypeMixer	mixer/main.py	/^class TypeMixer(_.with_metaclass(TypeMixerMeta)):$/;"	c
+TypeMixerMeta	mixer/backend/django.py	/^class TypeMixerMeta(BaseTypeMixerMeta):$/;"	c
+TypeMixerMeta	mixer/main.py	/^class TypeMixerMeta(type):$/;"	c
+URL	mixer/mix_types.py	/^class URL:$/;"	c
+USE_TZ	tests/django_app/settings.py	/^USE_TZ = True$/;"	v
+UTC	mixer/backend/django.py	/^UTC = UTCZone()$/;"	v
+UTCZone	mixer/backend/django.py	/^class UTCZone(dt.tzinfo):$/;"	c
+UUID	mixer/mix_types.py	/^class UUID:$/;"	c
+User	tests/test_flask.py	/^class User(db.Model):$/;"	c
+User	tests/test_mongoengine.py	/^class User(Document):$/;"	c
+User	tests/test_sqlalchemy.py	/^class User(BASE):$/;"	c
+VERSION	Makefile	/^VERSION?=minor$/;"	m
+VIRTUAL_ENV	Makefile	/^VIRTUAL_ENV 	?= $(CURDIR)\/env$/;"	m
+_Deffered	mixer/mix_types.py	/^class _Deffered(object):$/;"	c
+_MetaMixer	mixer/main.py	/^class _MetaMixer(type):$/;"	c
+_Mgr	mixer/_compat.py	/^    class _Mgr(object):$/;"	c	function:with_metaclass
+__and__	mixer/mix_types.py	/^    def __and__(self, values: Union[Dict[str, Any], type]) -> Any:$/;"	m	class:Mix	file:
+__author__	mixer/__init__.py	/^__author__ = "horneds <horneds@gmail.com>"$/;"	v
+__call__	mixer/_compat.py	/^        __call__ = type.__call__$/;"	v	class:with_metaclass.metaclass
+__call__	mixer/main.py	/^    def __call__(cls, cls_type, mixer=None, factory=None, fake=True):$/;"	m	class:TypeMixerMeta	file:
+__call__	mixer/mix_types.py	/^    def __call__(cls, *args: Any, **kwargs: Any) -> Any:$/;"	m	class:ServiceValue	file:
+__call__	mixer/mix_types.py	/^    def __call__(self, func: Callable) -> "Mix":$/;"	m	class:Mix	file:
+__create_env	mixer/_faker.py	/^    def __create_env(self) -> "MixerProvider":$/;"	m	class:MixerGenerator	file:
+__deepcopy__	mixer/mix_types.py	/^    def __deepcopy__(self, memo: "Field") -> "Field":$/;"	m	class:Field	file:
+__delitem__	mixer/_compat.py	/^    def __delitem__(self, key):$/;"	f	function:with_metaclass	file:
+__enter__	mixer/_compat.py	/^        def __enter__(self):$/;"	m	class:with_metaclass._Mgr	file:
+__exit__	mixer/_compat.py	/^        def __exit__(self, *args):$/;"	m	class:with_metaclass._Mgr	file:
+__flat_keys	mixer/factory.py	/^    def __flat_keys(d: Any) -> Iterator[Any]:$/;"	m	class:GenFactoryMeta	file:
+__getattr__	mixer/_faker.py	/^    def __getattr__(self, name: str) -> Callable:$/;"	m	class:MixerGenerator	file:
+__getattr__	mixer/main.py	/^    def __getattr__(self, name):$/;"	m	class:Mixer	file:
+__getattr__	mixer/main.py	/^    def __getattr__(self, name):$/;"	m	class:ProxyMixer	file:
+__getattr__	mixer/mix_types.py	/^    def __getattr__(self, value: str) -> "Mix":$/;"	m	class:Mix	file:
+__init__	mixer/_compat.py	/^        __init__ = type.__init__$/;"	v	class:with_metaclass.metaclass
+__init__	mixer/_compat.py	/^        def __init__(self, *args, **kwargs):$/;"	m	class:with_metaclass.OrderedDict
+__init__	mixer/_faker.py	/^    def __init__($/;"	m	class:MixerGenerator
+__init__	mixer/_faker.py	/^    def __init__(self, generator: Generator) -> None:$/;"	m	class:MixerProvider
+__init__	mixer/backend/django.py	/^    def __init__(self, commit: bool = True, **params: Any) -> None:$/;"	m	class:Mixer
+__init__	mixer/backend/flask.py	/^    def __init__($/;"	m	class:Mixer
+__init__	mixer/backend/marshmallow.py	/^    def __init__(self, *args: Any, **kwargs: Any) -> None:$/;"	m	class:Mixer
+__init__	mixer/backend/mongoengine.py	/^    def __init__(self, commit: bool = True, **params: Any) -> None:$/;"	m	class:Mixer
+__init__	mixer/backend/peewee.py	/^    def __init__(self, **params):$/;"	m	class:Mixer
+__init__	mixer/backend/sqlalchemy.py	/^    def __init__($/;"	m	class:Mixer
+__init__	mixer/backend/sqlalchemy.py	/^    def __init__(self, cls: Union[DefaultMeta, DeclarativeMeta], **params: Any) -> None:$/;"	m	class:TypeMixer
+__init__	mixer/main.py	/^    def __init__($/;"	m	class:Mixer
+__init__	mixer/main.py	/^    def __init__($/;"	m	class:ProxyMixer
+__init__	mixer/main.py	/^    def __init__($/;"	m	class:TypeMixer
+__init__	mixer/markov.py	/^    def __init__(self, dbFilePath=None):$/;"	m	class:MarkovChain
+__init__	mixer/mix_types.py	/^    def __init__($/;"	m	class:Mix
+__init__	mixer/mix_types.py	/^    def __init__($/;"	m	class:Random
+__init__	mixer/mix_types.py	/^    def __init__($/;"	m	class:_Deffered
+__init__	mixer/mix_types.py	/^    def __init__(self, scheme: Any = None, *choices: Any, **params: Any) -> None:$/;"	m	class:ServiceValue
+__init__	mixer/mix_types.py	/^    def __init__(self, scheme: Any, name: str, **params: Any) -> None:$/;"	m	class:Field
+__init_params__	mixer/main.py	/^    def __init_params__(self, locale: Optional[str] = None, **params: Any) -> None:$/;"	m	class:Mixer	file:
+__is_django_model	mixer/auto.py	/^    def __is_django_model(model: Any) -> bool:$/;"	m	class:MixerProxy	file:
+__is_mongoengine_model	mixer/auto.py	/^    def __is_mongoengine_model(model: Any) -> bool:$/;"	m	class:MixerProxy	file:
+__is_sqlalchemy_model	mixer/auto.py	/^    def __is_sqlalchemy_model(model: Any) -> bool:$/;"	m	class:MixerProxy	file:
+__iter__	mixer/_compat.py	/^    def __iter__(self):$/;"	f	function:with_metaclass	file:
+__license__	mixer/__init__.py	/^__license__ = "BSD"$/;"	v
+__load_cls	mixer/auto.py	/^    def __load_cls($/;"	m	class:MixerProxy	file:
+__load_cls	mixer/backend/django.py	/^    def __load_cls(cls, cls_type):$/;"	m	class:TypeMixerMeta	file:
+__load_cls	mixer/main.py	/^    def __load_cls(cls_type: Any) -> Any:$/;"	m	class:TypeMixerMeta	file:
+__load_fields	mixer/backend/django.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/backend/marshmallow.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/backend/mongoengine.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/backend/peewee.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/backend/pony.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/backend/sqlalchemy.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__load_fields	mixer/main.py	/^    def __load_fields(self):$/;"	m	class:TypeMixer	file:
+__metaclass__	mixer/backend/django.py	/^    __metaclass__ = TypeMixerMeta$/;"	v	class:TypeMixer
+__new__	mixer/_compat.py	/^        def __new__(cls, name, this_bases, d):$/;"	m	class:with_metaclass.metaclass	file:
+__new__	mixer/backend/django.py	/^    def __new__(mcs, name, bases, params):$/;"	m	class:TypeMixerMeta	file:
+__new__	mixer/factory.py	/^    def __new__(mcs, name, bases, params):$/;"	m	class:GenFactoryMeta	file:
+__project__	mixer/__init__.py	/^__project__ = "mixer"$/;"	v
+__repr__	mixer/main.py	/^    def __repr__(self):$/;"	m	class:Mixer	file:
+__repr__	mixer/main.py	/^    def __repr__(self):$/;"	m	class:TypeMixer	file:
+__repr__	mixer/mix_types.py	/^    def __repr__(self):$/;"	m	class:Mix	file:
+__setitem__	mixer/_compat.py	/^    def __setitem__(self, key, value):$/;"	f	function:with_metaclass	file:
+__store__	mixer/auto.py	/^    __store__ = dict()$/;"	v	class:MixerProxy
+__str__	mixer/mix_types.py	/^    def __str__(self):$/;"	m	class:Mix	file:
+__tablename__	tests/test_flask.py	/^    __tablename__ = "message"$/;"	v	class:Message
+__tablename__	tests/test_flask.py	/^    __tablename__ = "node"$/;"	v	class:Node
+__tablename__	tests/test_flask.py	/^    __tablename__ = "profile"$/;"	v	class:Profile
+__tablename__	tests/test_flask.py	/^    __tablename__ = "role"$/;"	v	class:Role
+__tablename__	tests/test_flask.py	/^    __tablename__ = "user"$/;"	v	class:User
+__tablename__	tests/test_sqlalchemy.py	/^        __tablename__ = "test"$/;"	v	class:test_postgresql.Test
+__tablename__	tests/test_sqlalchemy.py	/^    __tablename__ = "profile"$/;"	v	class:Profile
+__tablename__	tests/test_sqlalchemy.py	/^    __tablename__ = "profile_nonincremental"$/;"	v	class:ProfileNonIncremental
+__tablename__	tests/test_sqlalchemy.py	/^    __tablename__ = "role"$/;"	v	class:Role
+__tablename__	tests/test_sqlalchemy.py	/^    __tablename__ = "user"$/;"	v	class:User
+__update_cache	mixer/backend/django.py	/^    def __update_cache(cls):$/;"	m	class:TypeMixerMeta	file:
+__version__	mixer/__init__.py	/^__version__ = "6.1.3"$/;"	v
+_accumulateWithSeed	mixer/markov.py	/^    def _accumulateWithSeed(self, seed):$/;"	m	class:MarkovChain
+_get_value	mixer/backend/django.py	/^    def _get_value($/;"	m	class:TypeMixer
+_guard	mixer/main.py	/^    def _guard($/;"	m	class:Mixer
+_identity	mixer/_compat.py	/^_identity = lambda x: x$/;"	v
+_license	setup.py	/^_license = re.search(r'^__license__\\s*=\\s*"(.*)"', _meta, re.M).group(1)$/;"	v
+_meta	setup.py	/^_meta = _read("mixer\/__init__.py")$/;"	v
+_nextWord	mixer/markov.py	/^    def _nextWord(self, lastwords):$/;"	m	class:MarkovChain
+_project	setup.py	/^_project = re.search(r'^__project__\\s*=\\s*"(.*)"', _meta, re.M).group(1)$/;"	v
+_read	setup.py	/^def _read(fname):$/;"	f
+_resolve_name	mixer/_compat.py	/^    def _resolve_name(name, package, level):$/;"	f
+_version	setup.py	/^_version = re.search(r'^__version__\\s*=\\s*"(.*)"', _meta, re.M).group(1)$/;"	v
+_wordIter	mixer/markov.py	/^def _wordIter(text, separator="."):$/;"	f
+active	tests/django_app/models.py	/^    active = models.BooleanField(default=True)$/;"	v	class:Rabbit
+address	tests/test_pony.py	/^        address = Required(unicode)$/;"	v	class:Customer
+animal_type	tests/test_marshmallow.py	/^    animal_type = ma.fields.String(default="cat")$/;"	v	class:Pet
+animal_type	tests/test_peewee.py	/^    animal_type = CharField()$/;"	v	class:Pet
+app	tests/test_flask.py	/^app = Flask(__name__)$/;"	v
+augmented	tests/test_sqlalchemy.py	/^    augmented = Column(AugmentedType, default="augmented", nullable=False)$/;"	v	class:User
+author	tests/test_mongoengine.py	/^    author = ReferenceField(User)$/;"	v	class:Post
+auto_created	tests/django_app/migrations/0001_initial.py	/^                        auto_created=True,$/;"	v	class:Migration
+autodoc_member_order	docs/conf.py	/^autodoc_member_order = "bysource"$/;"	v
+awards	tests/test_marshmallow.py	/^    awards = ma.fields.List(ma.fields.Str)$/;"	v	class:Pet
+bases	tests/django_app/migrations/0001_initial.py	/^            bases=("auth.user",),$/;"	v	class:Migration
+bases	tests/django_app/migrations/0001_initial.py	/^            bases=("django_app.number",),$/;"	v	class:Migration
+bases	tests/django_app/migrations/0001_initial.py	/^            bases=(models.Model,),$/;"	v	class:Migration
+big_integer	mixer/_faker.py	/^    def big_integer(self) -> int:$/;"	m	class:MixerProvider
+binary	tests/django_app/models.py	/^    binary = models.BinaryField()$/;"	v	class:Rabbit
+birthday	tests/test_marshmallow.py	/^    birthday = ma.fields.Date()$/;"	v	class:Person
+birthday	tests/test_peewee.py	/^    birthday = DateField()$/;"	v	class:Person
+blank	tests/django_app/migrations/0001_initial.py	/^                        blank=True,$/;"	v	class:Migration
+blend	mixer/auto.py	/^    def blend(cls, model: Any, **params: Any) -> Any:$/;"	m	class:MixerProxy
+blend	mixer/main.py	/^    def blend(self, **values: Any) -> Any:$/;"	m	class:TypeMixer
+blend	mixer/main.py	/^    def blend(self, scheme: Any, **values: Any) -> Any:$/;"	m	class:Mixer
+blend	mixer/main.py	/^    def blend(self, scheme: Any, **values: Any) -> Any:$/;"	m	class:ProxyMixer
+body	tests/test_main.py	/^    body = str$/;"	v	class:Test
+bookmark	tests/test_mongoengine.py	/^    bookmark = GenericReferenceField()$/;"	v	class:Bookmark
+brend	tests/django_app/models.py	/^    brend = models.CharField(max_length=10, default="wood")$/;"	v	class:Hat
+cart_items	tests/test_pony.py	/^        cart_items = Set("CartItem")$/;"	v	class:Customer
+cart_items	tests/test_pony.py	/^        cart_items = Set("CartItem")$/;"	v	class:Product
+categories	tests/test_pony.py	/^        categories = Set("Category")$/;"	v	class:Product
+category	tests/test_mongoengine.py	/^    category = StringField(choices=(("S", "Super"), ("M", "Medium")), required=True)$/;"	v	class:Post
+children	tests/test_flask.py	/^    children = db.relation($/;"	v	class:Node
+choices	tests/django_app/migrations/0001_initial.py	/^                        choices=[(b"RD", b"red"), (b"GRN", b"green"), (b"BL", b"blue")],$/;"	v	class:Migration
+choices	tests/django_app/models.py	/^        choices=($/;"	v	class:Hat
+choices	tests/test_main.py	/^    choices = list$/;"	v	class:Test
+choices	tests/test_peewee.py	/^        choices=(("user", "user"), ("moderator", "moderator"), ("admin", "admin"))$/;"	v	class:Person
+city	tests/django_app/models.py	/^    city = models.CharField(max_length=20, unique=True)$/;"	v	class:Client
+clean_tables	tests/test_peewee.py	/^def clean_tables():$/;"	f
+clear	mixer/_compat.py	/^        def clear(self):$/;"	m	class:with_metaclass.OrderedDict
+client	tests/django_app/models.py	/^    client = models.ForeignKey(Client, on_delete=models.CASCADE)$/;"	v	class:Message
+cls_to_simple	mixer/factory.py	/^    def cls_to_simple(cls, fcls: Union[VisitableType, type]) -> Optional[type]:$/;"	m	class:GenFactory
+collect_types_fixture	tests/conftest.py	/^def collect_types_fixture():$/;"	f
+color	tests/django_app/models.py	/^    color = models.CharField($/;"	v	class:Hat
+color	tests/django_app/models.py	/^    color = models.CharField(max_length=20)$/;"	v	class:ColorNumber
+color	tests/django_app/models.py	/^    color = models.CharField(max_length=20)$/;"	v	class:Silk
+comments	tests/test_mongoengine.py	/^    comments = ListField(EmbeddedDocumentField(Comment))$/;"	v	class:Post
+content	tests/django_app/models.py	/^    content = models.TextField()$/;"	v	class:Message
+content	tests/test_flask.py	/^    content = db.Column(db.String(20))$/;"	v	class:Message
+content	tests/test_mongoengine.py	/^    content = StringField()$/;"	v	class:Comment
+content_object	tests/django_app/models.py	/^    content_object = GenericForeignKey("content_type", "object_id")$/;"	v	class:Rabbit
+content_type	tests/django_app/models.py	/^    content_type = models.ForeignKey(ct_models.ContentType, on_delete=models.CASCADE)$/;"	v	class:Rabbit
+coordinates	mixer/_faker.py	/^    def coordinates(self) -> Tuple[Decimal, Decimal]:$/;"	m	class:MixerProvider
+copyright	docs/conf.py	/^copyright = u"%s, Kirill Klenov" % datetime.datetime.now().year$/;"	v
+country	tests/test_pony.py	/^        country = Required(unicode)$/;"	v	class:Customer
+created	tests/test_marshmallow.py	/^    created = ma.fields.DateTime()$/;"	v	class:Person
+created	tests/test_peewee.py	/^    created = DateTimeField(default=dt.datetime.now)$/;"	v	class:Person
+created_at	tests/django_app/models.py	/^    created_at = models.DateField()$/;"	v	class:Rabbit
+created_at	tests/django_app/models.py	/^    created_at = models.DateField(auto_now_add=True)$/;"	v	class:Client
+created_at	tests/test_flask.py	/^    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)$/;"	v	class:User
+created_at	tests/test_mongoengine.py	/^    created_at = DateTimeField(default=datetime.datetime.now)$/;"	v	class:User
+created_at	tests/test_sqlalchemy.py	/^    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)$/;"	v	class:User
+ctx	mixer/main.py	/^    def ctx(self, **params: Any) -> Iterator[Iterator["Mixer"]]:$/;"	m	class:Mixer
+custom	tests/django_app/models.py	/^    custom = CustomField(max_length=24)$/;"	v	class:Rabbit
+customer	tests/django_app/models.py	/^    customer = models.ForeignKey($/;"	v	class:Tag
+customer	tests/test_pony.py	/^        customer = Required(Customer)$/;"	v	class:CartItem
+customer	tests/test_pony.py	/^        customer = Required(Customer)$/;"	v	class:Order
+cycle	mixer/auto.py	/^    def cycle(cls, count: int = 5) -> ProxyMixer:$/;"	m	class:MixerProxy
+cycle	mixer/main.py	/^    def cycle(self, count: int = 5) -> ProxyMixer:$/;"	m	class:Mixer
+database	tests/test_peewee.py	/^        database = db$/;"	v	class:Person.Meta
+database	tests/test_peewee.py	/^        database = db$/;"	v	class:Pet.Meta
+date_created	tests/test_pony.py	/^        date_created = Required(datetime)$/;"	v	class:Order
+date_delivered	tests/test_pony.py	/^        date_delivered = Optional(datetime)$/;"	v	class:Order
+date_shipped	tests/test_pony.py	/^        date_shipped = Optional(datetime)$/;"	v	class:Order
+db	tests/test_flask.py	/^db = SQLAlchemy()$/;"	v
+db	tests/test_peewee.py	/^db = SqliteDatabase(":memory:")$/;"	v
+db	tests/test_pony.py	/^    db = Database("sqlite", ":memory:", create_db=True)$/;"	v
+dependencies	tests/django_app/migrations/0001_initial.py	/^    dependencies = [$/;"	v	class:Migration
+description	tests/test_pony.py	/^        description = Optional(unicode)$/;"	v	class:Product
+doors	tests/django_app/models.py	/^    doors = models.ManyToManyField(Door)$/;"	v	class:Number
+dumpdb	mixer/markov.py	/^    def dumpdb(self):$/;"	m	class:MarkovChain
+email	tests/django_app/models.py	/^    email = models.EmailField()$/;"	v	class:Rabbit
+email	tests/test_mongoengine.py	/^    email = EmailField(required=True)$/;"	v	class:User
+email	tests/test_pony.py	/^        email = Required(unicode, unique=True)$/;"	v	class:Customer
+encrypt_password	tests/test_django.py	/^    def encrypt_password(user):  # noqa$/;"	f	function:test_custom
+enum	tests/test_sqlalchemy.py	/^    enum = Column(Enum("one", "two"), nullable=False)$/;"	v	class:User
+env	mixer/_faker.py	/^    def env(self) -> "MixerProvider":$/;"	m	class:MixerGenerator
+error_code	tests/django_app/models.py	/^    error_code = models.PositiveSmallIntegerField()$/;"	v	class:Rabbit
+exclude_patterns	docs/conf.py	/^exclude_patterns = ["_build"]$/;"	v
+extensions	docs/conf.py	/^extensions = ["sphinx.ext.autodoc", "sphinx.ext.intersphinx"]$/;"	v
+factory	mixer/backend/django.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+factory	mixer/backend/marshmallow.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+factory	mixer/backend/mongoengine.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+factory	mixer/backend/peewee.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+factory	mixer/backend/sqlalchemy.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+factory	mixer/main.py	/^    factory = GenFactory$/;"	v	class:TypeMixer
+faker	mixer/_faker.py	/^faker = MixerGenerator()$/;"	v
+fakers	mixer/factory.py	/^    fakers = {$/;"	v	class:GenFactory
+falsed	tests/test_main.py	/^    def falsed(test):  # noqa$/;"	f	function:test_silence
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.ForeignKey($/;"	v	class:Migration
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.ForeignKey(to="django_app.Hole", on_delete=models.CASCADE),$/;"	v	class:Migration
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.ForeignKey(to="django_app.Rabbit", on_delete=models.CASCADE),$/;"	v	class:Migration
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.ManyToManyField($/;"	v	class:Migration
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.ManyToManyField(to="django_app.Door"),$/;"	v	class:Migration
+field	tests/django_app/migrations/0001_initial.py	/^            field=models.OneToOneField($/;"	v	class:Migration
+fields	tests/django_app/migrations/0001_initial.py	/^            fields=[$/;"	v	class:Migration
+file_path	tests/django_app/models.py	/^    file_path = models.FilePathField()$/;"	v	class:Rabbit
+first_name	tests/test_mongoengine.py	/^    first_name = StringField(max_length=50)$/;"	v	class:User
+funny	tests/django_app/models.py	/^    funny = models.NullBooleanField(null=False, blank=False)$/;"	v	class:Rabbit
+gen	mixer/main.py	/^            def gen() -> Iterator[Union[Iterator, Iterator[int]]]:$/;"	f	function:Mixer.sequence
+gen2	mixer/main.py	/^        def gen2() -> Iterator[Union[Iterator, Iterator[int], Iterator[str]]]:$/;"	f	function:Mixer.sequence
+gen_fake	mixer/main.py	/^    def gen_fake(self, field_name: str, fake: Fake) -> Any:$/;"	m	class:TypeMixer
+gen_field	mixer/backend/django.py	/^    def gen_field(self, field: Field) -> Tuple[str, Union[date, time, object]]:$/;"	m	class:TypeMixer
+gen_field	mixer/backend/peewee.py	/^    def gen_field(self, field):$/;"	m	class:TypeMixer
+gen_field	mixer/main.py	/^    def gen_field(self, field: Field) -> Any:$/;"	m	class:TypeMixer
+gen_random	mixer/main.py	/^    def gen_random(self, field_name: str, random: Random) -> Any:$/;"	m	class:TypeMixer
+gen_select	mixer/backend/django.py	/^    def gen_select(self, field_name: str, select: Select) -> Tuple[str, Optional[Any]]:$/;"	m	class:TypeMixer
+gen_select	mixer/backend/mongoengine.py	/^    def gen_select(self, field_name, select):$/;"	m	class:TypeMixer
+gen_select	mixer/backend/peewee.py	/^    def gen_select(self, field_name, select):$/;"	m	class:TypeMixer
+gen_select	mixer/backend/sqlalchemy.py	/^    def gen_select(self, field_name: str, select: Select) -> Tuple[str, _Deffered]:$/;"	m	class:TypeMixer
+gen_select	mixer/main.py	/^    gen_select = gen_random$/;"	v	class:TypeMixer
+gen_value	mixer/main.py	/^    def gen_value($/;"	m	class:TypeMixer
+gen_value	mixer/mix_types.py	/^    def gen_value($/;"	m	class:Fake
+gen_value	mixer/mix_types.py	/^    def gen_value($/;"	m	class:Field
+gen_value	mixer/mix_types.py	/^    def gen_value($/;"	m	class:Random
+gen_value	mixer/mix_types.py	/^    def gen_value($/;"	m	class:Select
+gen_value	mixer/mix_types.py	/^    def gen_value(self, type_mixer, name, field):$/;"	m	class:ServiceValue
+generateDatabase	mixer/markov.py	/^    def generateDatabase(self, textSample, sentenceSep="[.!?\\n]", n=2):$/;"	m	class:MarkovChain
+generateString	mixer/markov.py	/^    def generateString(self):$/;"	m	class:MarkovChain
+generateStringWithSeed	mixer/markov.py	/^    def generateStringWithSeed(self, seed):$/;"	m	class:MarkovChain
+generators	mixer/backend/django.py	/^    generators = {$/;"	v	class:GenFactory
+generators	mixer/backend/marshmallow.py	/^    generators = {$/;"	v	class:GenFactory
+generators	mixer/backend/mongoengine.py	/^    generators = {$/;"	v	class:GenFactory
+generators	mixer/backend/peewee.py	/^    generators = {$/;"	v	class:GenFactory
+generators	mixer/backend/sqlalchemy.py	/^    generators = {Enum: None}$/;"	v	class:GenFactory
+generators	mixer/factory.py	/^    generators = {$/;"	v	class:GenFactory
+generators	tests/test_django.py	/^        generators = {models.CharField: getter}$/;"	v	class:test_custom.MyFactory
+generators	tests/test_main.py	/^        generators = {str: lambda: "Always same"}$/;"	v	class:test_custom.MyFactory
+genre	mixer/_faker.py	/^    def genre(self):$/;"	m	class:MixerProvider
+get_blob	mixer/backend/peewee.py	/^def get_blob(**kwargs):$/;"	f
+get_contentfile	mixer/backend/django.py	/^get_contentfile = ContentFile$/;"	v
+get_datetime	mixer/backend/django.py	/^def get_datetime(**params: Any) -> dt:$/;"	f
+get_default	mixer/backend/marshmallow.py	/^    def get_default(field: Field) -> Any:$/;"	m	class:TypeMixer
+get_default	mixer/backend/mongoengine.py	/^    def get_default(field: Field) -> Optional[datetime.datetime]:$/;"	m	class:TypeMixer
+get_default	mixer/backend/peewee.py	/^    def get_default(field):$/;"	m	class:TypeMixer
+get_default	mixer/backend/pony.py	/^    def get_default(field):$/;"	m	class:TypeMixer
+get_default	mixer/backend/sqlalchemy.py	/^    def get_default(field: Field) -> Union[int, object]:$/;"	m	class:TypeMixer
+get_default	mixer/main.py	/^    def get_default(field: Field) -> object:$/;"	m	class:TypeMixer
+get_fabric	mixer/factory.py	/^    def get_fabric($/;"	m	class:GenFactory
+get_fabric	mixer/main.py	/^    def get_fabric($/;"	m	class:TypeMixer
+get_file	mixer/backend/django.py	/^def get_file(filepath: str = MOCK_FILE, **kwargs: Any) -> ContentFile:$/;"	f
+get_generic_reference	mixer/backend/mongoengine.py	/^def get_generic_reference(_typemixer=None, **params):$/;"	f
+get_image	mixer/backend/django.py	/^def get_image(filepath=MOCK_IMAGE):$/;"	f
+get_linestring	mixer/backend/mongoengine.py	/^def get_linestring(length=5, **kwargs):$/;"	f
+get_nested	mixer/backend/marshmallow.py	/^def get_nested(_scheme: Schema, _typemixer: Union["NestedTypeMixer", "TypeMixer", None] = None, _many: bool = False, **kwargs: Any) -> Any:$/;"	f
+get_objectid	mixer/backend/mongoengine.py	/^def get_objectid(**kwargs: Any) -> ObjectId:$/;"	f
+get_pointfield	mixer/backend/mongoengine.py	/^def get_pointfield(**kwargs):$/;"	f
+get_polygon	mixer/backend/mongoengine.py	/^def get_polygon(length=5, **kwargs):$/;"	f
+get_relation	mixer/backend/django.py	/^def get_relation($/;"	f
+get_relation	mixer/backend/peewee.py	/^def get_relation(_scheme=None, _typemixer=None, **params):$/;"	f
+get_typemixer	mixer/main.py	/^    def get_typemixer(self, scheme: Any) -> Any:$/;"	m	class:Mixer
+get_value	mixer/backend/django.py	/^    def get_value(self, name: str, value: Any) -> Tuple[str, Any]:$/;"	m	class:TypeMixer
+get_value	mixer/backend/sqlalchemy.py	/^    def get_value(self, field_name: str, field_value: Any) -> Tuple[str, Any]:$/;"	m	class:TypeMixer
+get_value	mixer/main.py	/^    def get_value(self, name: str, value: Any) -> Tuple[str, Any]:$/;"	m	class:TypeMixer
+getter	tests/test_django.py	/^    def getter(*args, **kwargs):$/;"	f	function:test_custom
+guard	mixer/backend/django.py	/^    def guard(self, *args: Any, **kwargs: Any) -> Any:$/;"	m	class:TypeMixer
+guard	mixer/backend/mongoengine.py	/^    def guard(self, *args, **kwargs):$/;"	m	class:TypeMixer
+guard	mixer/backend/peewee.py	/^    def guard(self, *args, **kwargs):$/;"	m	class:TypeMixer
+guard	mixer/backend/sqlalchemy.py	/^    def guard(self, *args, **kwargs):$/;"	m	class:TypeMixer
+guard	mixer/main.py	/^    def guard(*args: Any, **kwargs: Any) -> bool:$/;"	m	class:TypeMixer
+guard	mixer/main.py	/^    def guard(self, *args: Any, **kwargs: Any) -> ProxyMixer:$/;"	m	class:Mixer
+hat	tests/django_app/models.py	/^    hat = models.ForeignKey(Hat, on_delete=models.CASCADE)$/;"	v	class:Silk
+hole	tests/django_app/models.py	/^    hole = models.ForeignKey(Hole, on_delete=models.CASCADE)$/;"	v	class:Door
+html_show_sphinx	docs/conf.py	/^html_show_sphinx = False$/;"	v
+html_theme	docs/conf.py	/^html_theme = "default"$/;"	v
+html_theme_options	docs/conf.py	/^html_theme_options = {}$/;"	v
+html_use_modindex	docs/conf.py	/^html_use_modindex = False$/;"	v
+htmlhelp_basename	docs/conf.py	/^htmlhelp_basename = "Mixerdoc"$/;"	v
+id	tests/test_flask.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Message
+id	tests/test_flask.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Node
+id	tests/test_flask.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Profile
+id	tests/test_flask.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:Role
+id	tests/test_flask.py	/^    id = db.Column(db.Integer, primary_key=True)$/;"	v	class:User
+id	tests/test_main.py	/^        id = int$/;"	v	class:test_typemixer.Scheme
+id	tests/test_pony.py	/^        id = PrimaryKey(int, auto=True)$/;"	v	class:Order
+id	tests/test_pony.py	/^        id = PrimaryKey(int, auto=True)$/;"	v	class:Product
+id	tests/test_sqlalchemy.py	/^        id = Column(Integer, primary_key=True)$/;"	v	class:test_postgresql.Test
+id	tests/test_sqlalchemy.py	/^    id = Column(Integer, primary_key=True)$/;"	v	class:Profile
+id	tests/test_sqlalchemy.py	/^    id = Column(Integer, primary_key=True)$/;"	v	class:User
+id	tests/test_sqlalchemy.py	/^    id = Column(Integer, primary_key=True, autoincrement=False, nullable=False)$/;"	v	class:ProfileNonIncremental
+impl	tests/test_sqlalchemy.py	/^    impl = String$/;"	v	class:AugmentedType
+implements_to_string	mixer/_compat.py	/^    def implements_to_string(cls):$/;"	f
+implements_to_string	mixer/_compat.py	/^    implements_to_string = _identity$/;"	v
+import_module	mixer/_compat.py	/^    def import_module(name, package=None):$/;"	f
+init_app	mixer/backend/flask.py	/^    def init_app(self, app: Flask) -> None:$/;"	m	class:Mixer
+install_requires	setup.py	/^install_requires = [$/;"	v
+integer_types	mixer/_compat.py	/^    integer_types = (int, long)$/;"	v
+integer_types	mixer/_compat.py	/^    integer_types = (int,)$/;"	v
+ip	tests/django_app/models.py	/^    ip = models.IPAddressField()$/;"	v	class:Rabbit
+ip6	tests/django_app/models.py	/^    ip6 = models.GenericIPAddressField(protocol="ipv6")$/;"	v	class:Rabbit
+ip_generic	mixer/_faker.py	/^    def ip_generic(self, protocol: Optional[str] = None) -> str:$/;"	m	class:MixerProvider
+is_relative	tests/test_marshmallow.py	/^    is_relative = ma.fields.Bool()$/;"	v	class:Person
+is_relative	tests/test_peewee.py	/^    is_relative = BooleanField()$/;"	v	class:Person
+is_required	mixer/backend/django.py	/^    def is_required(field: Field) -> bool:$/;"	m	class:TypeMixer
+is_required	mixer/backend/marshmallow.py	/^    def is_required(self, field: Field) -> bool:$/;"	m	class:TypeMixer
+is_required	mixer/backend/mongoengine.py	/^    def is_required(field: Field) -> bool:$/;"	m	class:TypeMixer
+is_required	mixer/backend/peewee.py	/^    def is_required(self, field):$/;"	m	class:TypeMixer
+is_required	mixer/backend/pony.py	/^    def is_required(self, field):$/;"	m	class:TypeMixer
+is_required	mixer/backend/sqlalchemy.py	/^    def is_required(self, field: Field) -> bool:$/;"	m	class:TypeMixer
+is_required	mixer/main.py	/^    def is_required(field: Field) -> bool:$/;"	m	class:TypeMixer
+is_unique	mixer/backend/django.py	/^    def is_unique(field: Field) -> bool:$/;"	m	class:TypeMixer
+is_unique	mixer/backend/mongoengine.py	/^    def is_unique(field: Field) -> bool:$/;"	m	class:TypeMixer
+is_unique	mixer/backend/peewee.py	/^    def is_unique(self, field):$/;"	m	class:TypeMixer
+is_unique	mixer/backend/pony.py	/^    def is_unique(self, field):$/;"	m	class:TypeMixer
+is_unique	mixer/backend/sqlalchemy.py	/^    def is_unique(field: Field) -> Optional[Any]:$/;"	m	class:TypeMixer
+is_unique	mixer/main.py	/^    def is_unique(field: Field) -> bool:$/;"	m	class:TypeMixer
+items	tests/test_pony.py	/^        items = Set(OrderItem)$/;"	v	class:Order
+iteritems	mixer/_compat.py	/^    iteritems = lambda d: d.iteritems()$/;"	v
+iteritems	mixer/_compat.py	/^    iteritems = lambda d: iter(d.items())$/;"	v
+iterkeys	mixer/_compat.py	/^    iterkeys = lambda d: d.iterkeys()$/;"	v
+iterkeys	mixer/_compat.py	/^    iterkeys = lambda d: iter(d.keys())$/;"	v
+itervalues	mixer/_compat.py	/^    itervalues = lambda d: d.itervalues()$/;"	v
+itervalues	mixer/_compat.py	/^    itervalues = lambda d: iter(d.values())$/;"	v
+keys	mixer/_compat.py	/^    def keys(self):$/;"	f	function:with_metaclass
+last_name	tests/test_mongoengine.py	/^    last_name = StringField(max_length=50)$/;"	v	class:User
+latex_documents	docs/conf.py	/^latex_documents = [$/;"	v
+latex_use_modindex	docs/conf.py	/^latex_use_modindex = False$/;"	v
+latex_use_parts	docs/conf.py	/^latex_use_parts = True$/;"	v
+load	mixer/_faker.py	/^    def load(self, providers: List[str] = PROVIDERS, locale: str = None) -> None:$/;"	m	class:MixerProvider
+locale	mixer/_faker.py	/^    def locale(self) -> str:$/;"	m	class:MixerGenerator
+locale	mixer/_faker.py	/^    def locale(self, value: str) -> None:$/;"	m	class:MixerGenerator
+lst	tests/test_marshmallow.py	/^    lst = ma.fields.List(ma.fields.Nested(Pet))$/;"	v	class:PetList
+make_fabric	mixer/backend/django.py	/^    def make_fabric($/;"	m	class:TypeMixer
+make_fabric	mixer/backend/marshmallow.py	/^    def make_fabric(self, field: Any, field_name: str = None, fake: bool = False, kwargs: Optional[Any] = None) -> Callable:  # noqa$/;"	m	class:TypeMixer
+make_fabric	mixer/backend/mongoengine.py	/^    def make_fabric($/;"	m	class:TypeMixer
+make_fabric	mixer/backend/peewee.py	/^    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa$/;"	m	class:TypeMixer
+make_fabric	mixer/backend/pony.py	/^    def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa$/;"	m	class:TypeMixer
+make_fabric	mixer/backend/sqlalchemy.py	/^    def make_fabric($/;"	m	class:TypeMixer
+make_fabric	mixer/main.py	/^    def make_fabric($/;"	m	class:TypeMixer
+male	tests/test_main.py	/^        male = bool$/;"	v	class:test_typemixer.Scheme
+man_pages	docs/conf.py	/^man_pages = [("index", "mixer", u"Mixer Documentation", [u"Kirill Klenov"], 1)]$/;"	v
+master_doc	docs/conf.py	/^master_doc = "index"$/;"	v
+max_length	tests/django_app/migrations/0001_initial.py	/^                        max_length=50,$/;"	v	class:Migration
+max_length	tests/django_app/models.py	/^        max_length=50,$/;"	v	class:Hat
+messages	tests/django_app/models.py	/^    messages = models.ManyToManyField(Message, null=True, blank=True)$/;"	v	class:Tag
+messages	tests/test_flask.py	/^    messages = db.relationship("Message", secondary=usermessages, backref="users")$/;"	v	class:User
+meta	tests/test_mongoengine.py	/^    meta = {"allow_inheritance": True}$/;"	v	class:Post
+metaclass	mixer/_compat.py	/^    class metaclass(meta):$/;"	c	function:with_metaclass
+middleware	mixer/main.py	/^    def middleware(self, scheme: Union[str, type]) -> Callable:$/;"	m	class:Mixer
+mixer	mixer/auto.py	/^mixer = MixerProxy()$/;"	v
+mixer	mixer/backend/django.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/backend/flask.py	/^mixer = Mixer(commit=True)$/;"	v
+mixer	mixer/backend/marshmallow.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/backend/mongoengine.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/backend/peewee.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/backend/pony.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/backend/sqlalchemy.py	/^mixer = Mixer()$/;"	v
+mixer	mixer/main.py	/^mixer = Mixer()$/;"	v
+mixer	tests/test_django.py	/^def mixer(request):$/;"	f
+mixer	tests/test_marshmallow.py	/^def mixer():$/;"	f
+mixer	tests/test_peewee.py	/^def mixer():$/;"	f
+mixers	mixer/main.py	/^    mixers = dict()$/;"	v	class:TypeMixerMeta
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="door",$/;"	v	class:Migration
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="hat",$/;"	v	class:Migration
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="hole",$/;"	v	class:Migration
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="number",$/;"	v	class:Migration
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="pointa",$/;"	v	class:Migration
+model_name	tests/django_app/migrations/0001_initial.py	/^            model_name="rabbit",$/;"	v	class:Migration
+money	tests/django_app/models.py	/^    money = models.IntegerField()$/;"	v	class:Rabbit
+money	tests/test_main.py	/^        money = int$/;"	v	class:test_typemixer.Scheme
+name	tests/django_app/migrations/0001_initial.py	/^            name="Client",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="ColorNumber",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Customer",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Door",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Hat",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Hole",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Message",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Number",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="PointA",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="PointB",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Rabbit",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Silk",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Simple",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Tag",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="Through",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="doors",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="hole",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="one2one",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="other",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="owner",$/;"	v	class:Migration
+name	tests/django_app/migrations/0001_initial.py	/^            name="wtf",$/;"	v	class:Migration
+name	tests/django_app/models.py	/^    name = models.CharField(max_length=100)$/;"	v	class:Customer
+name	tests/django_app/models.py	/^    name = models.CharField(max_length=50)$/;"	v	class:Client
+name	tests/test_flask.py	/^    name = db.Column(db.String(20), nullable=False)$/;"	v	class:Profile
+name	tests/test_flask.py	/^    name = db.Column(db.String(20), nullable=False)$/;"	v	class:Role
+name	tests/test_main.py	/^        name = str$/;"	v	class:test_typemixer.Scheme
+name	tests/test_main.py	/^    name = str$/;"	v	class:Test
+name	tests/test_marshmallow.py	/^    name = ma.fields.String()$/;"	v	class:Person
+name	tests/test_marshmallow.py	/^    name = ma.fields.String()$/;"	v	class:Pet
+name	tests/test_mongoengine.py	/^    name = StringField(max_length=120)$/;"	v	class:Comment
+name	tests/test_peewee.py	/^    name = CharField()$/;"	v	class:Person
+name	tests/test_peewee.py	/^    name = CharField()$/;"	v	class:Pet
+name	tests/test_pony.py	/^        name = Required(unicode)$/;"	v	class:Customer
+name	tests/test_pony.py	/^        name = Required(unicode)$/;"	v	class:Product
+name	tests/test_pony.py	/^        name = Required(unicode, unique=True)$/;"	v	class:Category
+name	tests/test_sqlalchemy.py	/^    name = Column(String(10), nullable=False)$/;"	v	class:User
+name	tests/test_sqlalchemy.py	/^    name = Column(String(20), nullable=False)$/;"	v	class:Profile
+name	tests/test_sqlalchemy.py	/^    name = Column(String(20), nullable=False)$/;"	v	class:ProfileNonIncremental
+name	tests/test_sqlalchemy.py	/^    name = Column(String(20), primary_key=True)$/;"	v	class:Role
+name_to_simple	mixer/factory.py	/^    def name_to_simple(fname: str) -> str:$/;"	m	class:GenFactory
+nested_mixer	tests/test_marshmallow.py	/^def nested_mixer():$/;"	f
+null	mixer/_compat.py	/^        null = object()$/;"	v	class:with_metaclass.OrderedDict
+null	tests/django_app/migrations/0001_initial.py	/^                        null=True,$/;"	v	class:Migration
+object_id	tests/django_app/models.py	/^    object_id = models.PositiveIntegerField()$/;"	v	class:Rabbit
+on_delete	tests/django_app/migrations/0001_initial.py	/^                        on_delete=models.CASCADE,$/;"	v	class:Migration
+one	tests/test_main.py	/^    one = int$/;"	v	class:Test
+one2one	tests/django_app/models.py	/^    one2one = models.OneToOneField("django_app.Simple", on_delete=models.CASCADE)$/;"	v	class:Rabbit
+opened_at	tests/django_app/models.py	/^    opened_at = models.TimeField()$/;"	v	class:Rabbit
+operations	tests/django_app/migrations/0001_initial.py	/^    operations = [$/;"	v	class:Migration
+options	tests/django_app/migrations/0001_initial.py	/^            options={$/;"	v	class:Migration
+options	tests/django_app/migrations/0001_initial.py	/^            options={},$/;"	v	class:Migration
+order	tests/test_pony.py	/^        order = Required("Order")$/;"	v	class:OrderItem
+order_items	tests/test_pony.py	/^        order_items = Set("OrderItem")$/;"	v	class:Product
+orders	tests/test_pony.py	/^        orders = Set("Order")$/;"	v	class:Customer
+other	tests/django_app/models.py	/^    other = models.ManyToManyField("django_app.PointB", through="django_app.Through")$/;"	v	class:PointA
+owner	tests/django_app/models.py	/^    owner = models.ForeignKey(Rabbit, on_delete=models.CASCADE)$/;"	v	class:Hole
+owner	tests/django_app/models.py	/^    owner = models.ForeignKey(Rabbit, on_delete=models.CASCADE, null=True, blank=True)$/;"	v	class:Door
+owner	tests/django_app/models.py	/^    owner = models.ForeignKey(Rabbit, on_delete=models.CASCADE, null=True, blank=True)$/;"	v	class:Hat
+owner	tests/test_marshmallow.py	/^    owner = ma.fields.Nested(Person, many=True)$/;"	v	class:Pet
+owner	tests/test_peewee.py	/^    owner = ForeignKeyField(Person, related_name="pets")$/;"	v	class:Pet
+parent_id	tests/test_flask.py	/^    parent_id = db.Column(db.Integer, db.ForeignKey("node.id"))$/;"	v	class:Node
+parent_link	tests/django_app/migrations/0001_initial.py	/^                        parent_link=True,$/;"	v	class:Migration
+parts	tests/test_main.py	/^    parts = set$/;"	v	class:Test
+password	tests/test_pony.py	/^        password = Required(unicode)$/;"	v	class:Customer
+percent	mixer/_faker.py	/^    def percent(self) -> int:$/;"	m	class:MixerProvider
+percent	tests/django_app/models.py	/^    percent = models.FloatField()$/;"	v	class:Rabbit
+percent_decimal	mixer/_faker.py	/^    def percent_decimal(self) -> Decimal:$/;"	m	class:MixerProvider
+picture	tests/django_app/models.py	/^    picture = models.FileField(upload_to=settings.TMPDIR)$/;"	v	class:Rabbit
+picture	tests/test_pony.py	/^        picture = Optional(buffer)$/;"	v	class:Product
+place	tests/test_mongoengine.py	/^    place = PointField()$/;"	v	class:Post
+pointas	tests/django_app/models.py	/^    pointas = models.ForeignKey(PointA, on_delete=models.CASCADE)$/;"	v	class:Through
+pointbs	tests/django_app/models.py	/^    pointbs = models.ForeignKey(PointB, on_delete=models.CASCADE)$/;"	v	class:Through
+populate_target	mixer/backend/marshmallow.py	/^    def populate_target(self, values: Any) -> Any:$/;"	m	class:TypeMixer
+populate_target	mixer/backend/marshmallow.py	/^    def populate_target(self, values: Any) -> Dict[str, Any]:$/;"	m	class:NestedTypeMixer
+populate_target	mixer/backend/peewee.py	/^    def populate_target(self, values):$/;"	m	class:TypeMixer
+populate_target	mixer/backend/pony.py	/^    def populate_target(self, values):$/;"	m	class:TypeMixer
+populate_target	mixer/backend/sqlalchemy.py	/^    def populate_target(self, values: Any) -> Any:$/;"	m	class:TypeMixer
+populate_target	mixer/main.py	/^    def populate_target(self, values: Any) -> Any:$/;"	m	class:TypeMixer
+positive_decimal	mixer/_faker.py	/^    def positive_decimal(self, **kwargs: Any) -> Decimal:$/;"	m	class:MixerProvider
+positive_integer	mixer/_faker.py	/^    def positive_integer(self, max: int = 2147483647) -> int:  # noqa$/;"	m	class:MixerProvider
+postprocess	mixer/backend/django.py	/^    def postprocess($/;"	m	class:TypeMixer
+postprocess	mixer/backend/django.py	/^    def postprocess(self, target: Any) -> Any:$/;"	m	class:Mixer
+postprocess	mixer/backend/mongoengine.py	/^    def postprocess(self, target: User) -> User:$/;"	m	class:Mixer
+postprocess	mixer/backend/peewee.py	/^    def postprocess(self, target):$/;"	m	class:Mixer
+postprocess	mixer/backend/pony.py	/^    def postprocess(self, target):$/;"	m	class:Mixer
+postprocess	mixer/backend/sqlalchemy.py	/^    def postprocess($/;"	m	class:TypeMixer
+postprocess	mixer/backend/sqlalchemy.py	/^    def postprocess(self, target: Any) -> Any:$/;"	m	class:Mixer
+postprocess	mixer/main.py	/^    def postprocess(self, target: Any, postprocess_values: List) -> Any:$/;"	m	class:TypeMixer
+postprocess	mixer/main.py	/^    def postprocess(target: Any) -> Any:$/;"	m	class:Mixer
+postprocess	tests/test_main.py	/^    def postprocess(x):  # noqa$/;"	f	function:test_custom
+preserve_default	tests/django_app/migrations/0001_initial.py	/^            preserve_default=True,$/;"	v	class:Migration
+price	tests/test_main.py	/^    price = Decimal$/;"	v	class:Test
+price	tests/test_pony.py	/^        price = Required(Decimal)$/;"	v	class:OrderItem
+price	tests/test_pony.py	/^        price = Required(Decimal)$/;"	v	class:Product
+primary_key	tests/django_app/migrations/0001_initial.py	/^                        primary_key=True,$/;"	v	class:Migration
+product	tests/test_pony.py	/^        product = Required(Product)$/;"	v	class:CartItem
+product	tests/test_pony.py	/^        product = Required(Product)$/;"	v	class:OrderItem
+products	tests/test_pony.py	/^        products = Set(Product)$/;"	v	class:Category
+profile_id	tests/test_flask.py	/^    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"), nullable=False)$/;"	v	class:User
+profile_id	tests/test_sqlalchemy.py	/^    profile_id = Column(Integer, ForeignKey("profile.id"), nullable=False)$/;"	v	class:User
+profile_id_nonincremental	tests/test_sqlalchemy.py	/^    profile_id_nonincremental = Column($/;"	v	class:User
+project	docs/conf.py	/^project = u"Mixer"$/;"	v
+prop	tests/test_main.py	/^        prop = Test$/;"	v	class:test_typemixer.Scheme
+providers	mixer/_faker.py	/^    def providers(self) -> List[Any]:$/;"	m	class:MixerGenerator
+providers	mixer/_faker.py	/^    def providers(self, value) -> None:$/;"	m	class:MixerGenerator
+pybytes	mixer/_faker.py	/^    def pybytes(self, size: int = 20) -> bytes:$/;"	m	class:MixerProvider
+pygments_style	docs/conf.py	/^pygments_style = "tango"$/;"	v
+pytest_collection_finish	tests/conftest.py	/^def pytest_collection_finish(session):$/;"	f
+pytest_sessionfinish	tests/conftest.py	/^def pytest_sessionfinish(session, exitstatus):$/;"	f
+pytestmark	tests/test_pony.py	/^pytestmark = pytest.mark.skipif($/;"	v
+quantity	tests/test_pony.py	/^        quantity = Required(int)$/;"	v	class:CartItem
+quantity	tests/test_pony.py	/^        quantity = Required(int)$/;"	v	class:Product
+quantity	tests/test_pony.py	/^        quantity = Required(int, default=1)$/;"	v	class:OrderItem
+rabbits	tests/django_app/models.py	/^    rabbits = GenericRelation(Rabbit, **({"related_query_name": "holes"}))$/;"	v	class:Hole
+random	tests/test_sqlalchemy.py	/^    random = Column(Integer, default=lambda: randrange(993, 995))$/;"	v	class:User
+rating	tests/test_mongoengine.py	/^    rating = DecimalField(precision=4, required=True)$/;"	v	class:Post
+register	mixer/main.py	/^    def register($/;"	m	class:TypeMixer
+register	mixer/main.py	/^    def register(self, scheme: Union[ModelBase, str, type], **params: Any) -> None:$/;"	m	class:Mixer
+reload	mixer/backend/django.py	/^    def reload(self, obj: Any) -> Any:$/;"	m	class:TypeMixer
+reload	mixer/backend/mongoengine.py	/^    def reload(self, obj):$/;"	m	class:TypeMixer
+reload	mixer/backend/peewee.py	/^    def reload(self, obj):$/;"	m	class:TypeMixer
+reload	mixer/backend/sqlalchemy.py	/^    def reload(self, obj):$/;"	m	class:TypeMixer
+reload	mixer/main.py	/^    def reload(self, *objs: Any) -> Any:$/;"	m	class:Mixer
+reload	mixer/main.py	/^    def reload(self, obj: Any) -> Any:$/;"	m	class:TypeMixer
+required	tests/test_marshmallow.py	/^        required=True,$/;"	v	class:Person
+reraise	mixer/_compat.py	/^    def reraise(tp, value, tb=None):$/;"	f
+role	tests/test_sqlalchemy.py	/^    role = Column(String(10), default="client", nullable=False)$/;"	v	class:User
+save	tests/django_app/models.py	/^    def save(self, **kwargs):$/;"	m	class:Rabbit
+scheme	tests/test_main.py	/^    scheme = dict$/;"	v	class:Test
+score	tests/django_app/models.py	/^    score = models.IntegerField(default=50)$/;"	v	class:Client
+score	tests/test_flask.py	/^    score = db.Column(db.SmallInteger, default=50, nullable=False)$/;"	v	class:User
+score	tests/test_sqlalchemy.py	/^    score = Column(SmallInteger, name="points", default=50, nullable=False)$/;"	v	class:User
+sequence	mixer/main.py	/^    def sequence(*args: Any) -> Iterator:$/;"	m	class:Mixer
+serialize	tests/django_app/migrations/0001_initial.py	/^                        serialize=False,$/;"	v	class:Migration
+session	tests/test_sqlalchemy.py	/^def session():$/;"	f
+set_formatter	mixer/_faker.py	/^    def set_formatter(self, name: str, method: Callable) -> None:$/;"	m	class:MixerGenerator
+size	tests/django_app/models.py	/^    size = models.PositiveIntegerField()$/;"	v	class:Door
+size	tests/django_app/models.py	/^    size = models.SmallIntegerField()$/;"	v	class:Hole
+size	tests/test_mongoengine.py	/^    size = StringField($/;"	v	class:Post
+slug	tests/django_app/models.py	/^    slug = models.SlugField()$/;"	v	class:Rabbit
+small_integer	mixer/_faker.py	/^    def small_integer(self, min: int = -SMALLINT, max: int = SMALLINT) -> int:  # noqa$/;"	m	class:MixerProvider
+small_positive_integer	mixer/_faker.py	/^    def small_positive_integer(self, max: int = SMALLINT) -> int:  # noqa$/;"	m	class:MixerProvider
+some_field	tests/django_app/models.py	/^    some_field = models.CommaSeparatedIntegerField(max_length=12)$/;"	v	class:Rabbit
+source_suffix	docs/conf.py	/^source_suffix = ".rst"$/;"	v
+speed	tests/django_app/models.py	/^    speed = models.DecimalField(max_digits=3, decimal_places=1)$/;"	v	class:Rabbit
+state	tests/test_pony.py	/^        state = Required(unicode)$/;"	v	class:Order
+status	tests/test_marshmallow.py	/^    status = ma.fields.String($/;"	v	class:Person
+status	tests/test_peewee.py	/^    status = CharField($/;"	v	class:Person
+string_types	mixer/_compat.py	/^    string_types = (str, unicode)$/;"	v
+string_types	mixer/_compat.py	/^    string_types = (str,)$/;"	v
+tags	tests/test_mongoengine.py	/^    tags = ListField(StringField(max_length=30))$/;"	v	class:Post
+templates_path	docs/conf.py	/^templates_path = ["_templates"]$/;"	v
+test_backend	tests/test_pony.py	/^    def test_backend():$/;"	f
+test_base	tests/test_django.py	/^def test_base():$/;"	f
+test_base	tests/test_flask.py	/^def test_base():$/;"	f
+test_base	tests/test_mongoengine.py	/^def test_base():$/;"	f
+test_contrib	tests/test_django.py	/^def test_contrib(mixer):$/;"	f
+test_ctx	tests/test_main.py	/^def test_ctx():$/;"	f
+test_custom	tests/test_django.py	/^def test_custom(mixer):$/;"	f
+test_custom	tests/test_main.py	/^def test_custom():$/;"	f
+test_cycle	tests/test_sqlalchemy.py	/^def test_cycle(session):$/;"	f
+test_default_mixer	tests/test_flask.py	/^def test_default_mixer():$/;"	f
+test_default_mixer	tests/test_sqlalchemy.py	/^def test_default_mixer():$/;"	f
+test_deffered	tests/test_django.py	/^def test_deffered(mixer):$/;"	f
+test_django	tests/test_auto.py	/^def test_django():$/;"	f
+test_factory	tests/test_main.py	/^def test_factory():$/;"	f
+test_fake	tests/test_main.py	/^def test_fake():$/;"	f
+test_faker	tests/test_faker.py	/^def test_faker():$/;"	f
+test_fields	tests/test_django.py	/^def test_fields(mixer):$/;"	f
+test_generators	tests/test_mongoengine.py	/^def test_generators():$/;"	f
+test_generic	tests/test_django.py	/^def test_generic(mixer):$/;"	f
+test_guard	tests/test_django.py	/^def test_guard(mixer):$/;"	f
+test_guard	tests/test_main.py	/^def test_guard():$/;"	f
+test_guard	tests/test_peewee.py	/^def test_guard(mixer):$/;"	f
+test_guard	tests/test_sqlalchemy.py	/^def test_guard(session):$/;"	f
+test_invalid_scheme	tests/test_django.py	/^def test_invalid_scheme(mixer):$/;"	f
+test_invalid_scheme	tests/test_main.py	/^def test_invalid_scheme():$/;"	f
+test_locale	tests/test_main.py	/^def test_locale():$/;"	f
+test_main	tests/test_auto.py	/^def test_main():$/;"	f
+test_many_to_many_random	tests/test_django.py	/^def test_many_to_many_random(mixer):$/;"	f
+test_many_to_many_select	tests/test_django.py	/^def test_many_to_many_select(mixer):$/;"	f
+test_many_to_many_through	tests/test_django.py	/^def test_many_to_many_through(mixer):$/;"	f
+test_mix	tests/test_django.py	/^def test_mix(mixer):$/;"	f
+test_mix	tests/test_main.py	/^def test_mix():$/;"	f
+test_mix22	tests/test_sqlalchemy.py	/^def test_mix22(session):$/;"	f
+test_mixer	tests/test_main.py	/^def test_mixer():$/;"	f
+test_mixer	tests/test_marshmallow.py	/^def test_mixer(mixer):$/;"	f
+test_mixer	tests/test_peewee.py	/^def test_mixer(mixer):$/;"	f
+test_mixer	tests/test_pony.py	/^    def test_mixer():$/;"	f
+test_mixer	tests/test_sqlalchemy.py	/^def test_mixer(session):$/;"	f
+test_mixer_cycle	tests/test_main.py	/^def test_mixer_cycle():$/;"	f
+test_mixer_default	tests/test_main.py	/^def test_mixer_default():$/;"	f
+test_mongoengine	tests/test_auto.py	/^def test_mongoengine():$/;"	f
+test_nested_mixer	tests/test_marshmallow.py	/^def test_nested_mixer(nested_mixer):$/;"	f
+test_nonincremental_primary_key	tests/test_sqlalchemy.py	/^def test_nonincremental_primary_key(session):$/;"	f
+test_postgresql	tests/test_sqlalchemy.py	/^def test_postgresql():$/;"	f
+test_random	tests/test_django.py	/^def test_random(mixer):$/;"	f
+test_random	tests/test_main.py	/^def test_random():$/;"	f
+test_random	tests/test_sqlalchemy.py	/^def test_random():$/;"	f
+test_random_fields	tests/test_django.py	/^def test_random_fields():$/;"	f
+test_relation	tests/test_django.py	/^def test_relation(mixer):$/;"	f
+test_relation	tests/test_mongoengine.py	/^def test_relation():$/;"	f
+test_reload	tests/test_django.py	/^def test_reload(mixer):$/;"	f
+test_reload	tests/test_main.py	/^def test_reload():$/;"	f
+test_reload	tests/test_peewee.py	/^def test_reload(mixer):$/;"	f
+test_reload	tests/test_sqlalchemy.py	/^def test_reload(session):$/;"	f
+test_select	tests/test_django.py	/^def test_select(mixer):$/;"	f
+test_select	tests/test_peewee.py	/^def test_select(mixer):$/;"	f
+test_select	tests/test_sqlalchemy.py	/^def test_select(session):$/;"	f
+test_sequence	tests/test_main.py	/^def test_sequence():$/;"	f
+test_silence	tests/test_main.py	/^def test_silence():$/;"	f
+test_skip	tests/test_django.py	/^def test_skip(mixer):$/;"	f
+test_skip	tests/test_main.py	/^def test_skip():$/;"	f
+test_small_positive_integer_field_not_too_large	tests/test_django.py	/^def test_small_positive_integer_field_not_too_large(mixer):$/;"	f
+test_sqlalchemy	tests/test_auto.py	/^def test_sqlalchemy():$/;"	f
+test_typemixer	tests/test_main.py	/^def test_typemixer():$/;"	f
+test_typemixer	tests/test_mongoengine.py	/^def test_typemixer():$/;"	f
+test_typemixer	tests/test_sqlalchemy.py	/^def test_typemixer():$/;"	f
+test_typemixer_meta	tests/test_main.py	/^def test_typemixer_meta():$/;"	f
+test_unique	tests/test_django.py	/^def test_unique(mixer):$/;"	f
+tests_require	setup.py	/^tests_require = [$/;"	v
+text	tests/django_app/models.py	/^    text = models.TextField(max_length=512)$/;"	v	class:Rabbit
+text_type	mixer/_compat.py	/^    text_type = str$/;"	v
+text_type	mixer/_compat.py	/^    text_type = unicode$/;"	v
+title	mixer/_faker.py	/^    def title(self) -> str:$/;"	m	class:MixerProvider
+title	tests/django_app/models.py	/^    title = models.CharField(max_length=16)$/;"	v	class:Hole
+title	tests/django_app/models.py	/^    title = models.CharField(max_length=16)$/;"	v	class:Rabbit
+title	tests/django_app/models.py	/^    title = models.CharField(max_length=20)$/;"	v	class:Tag
+title	tests/test_main.py	/^    title = str$/;"	v	class:Test
+title	tests/test_mongoengine.py	/^    title = StringField(max_length=120, required=True)$/;"	v	class:Post
+to	tests/django_app/migrations/0001_initial.py	/^                        to="django_app.Customer",$/;"	v	class:Migration
+to	tests/django_app/migrations/0001_initial.py	/^                        to="django_app.Number",$/;"	v	class:Migration
+to	tests/django_app/migrations/0001_initial.py	/^                        to=settings.AUTH_USER_MODEL,$/;"	v	class:Migration
+tokenize	mixer/markov.py	/^def tokenize(text):$/;"	f
+total_price	tests/test_pony.py	/^        total_price = Required(Decimal)$/;"	v	class:Order
+two	tests/test_main.py	/^    two = int$/;"	v	class:Test
+type_mixer_cls	mixer/backend/django.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/flask.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/marshmallow.py	/^    type_mixer_cls = NestedTypeMixer$/;"	v	class:NestedMixer
+type_mixer_cls	mixer/backend/marshmallow.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/mongoengine.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/peewee.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/pony.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/backend/sqlalchemy.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+type_mixer_cls	mixer/main.py	/^    type_mixer_cls = TypeMixer$/;"	v	class:Mixer
+types	mixer/backend/django.py	/^    types = {$/;"	v	class:GenFactory
+types	mixer/backend/marshmallow.py	/^    types = {$/;"	v	class:GenFactory
+types	mixer/backend/mongoengine.py	/^    types = {$/;"	v	class:GenFactory
+types	mixer/backend/peewee.py	/^    types = {$/;"	v	class:GenFactory
+types	mixer/backend/sqlalchemy.py	/^    types = {$/;"	v	class:GenFactory
+types	mixer/factory.py	/^    types = {$/;"	v	class:GenFactory
+tzname	mixer/backend/django.py	/^    tzname = lambda s, d: "UTC"$/;"	v	class:UTCZone
+unregister_middleware	mixer/main.py	/^    def unregister_middleware(self, scheme: Any, middleware: Any) -> None:$/;"	m	class:Mixer
+updated_at	tests/django_app/models.py	/^    updated_at = models.DateTimeField()$/;"	v	class:Rabbit
+updated_at	tests/django_app/models.py	/^    updated_at = models.DateTimeField(auto_now=True)$/;"	v	class:Client
+updated_at	tests/test_sqlalchemy.py	/^    updated_at = Column(Boolean)$/;"	v	class:User
+url	tests/django_app/models.py	/^    url = models.URLField(null=True, blank=True, default="")$/;"	v	class:Rabbit
+url	tests/test_mongoengine.py	/^    url = URLField(required=True)$/;"	v	class:Post
+user	tests/test_flask.py	/^    user = db.relation(User)$/;"	v	class:Role
+user	tests/test_flask.py	/^    user = db.relationship("User", uselist=False, backref="profile")$/;"	v	class:Profile
+user	tests/test_mongoengine.py	/^    user = ReferenceField(User)$/;"	v	class:Bookmark
+user	tests/test_sqlalchemy.py	/^    user = relation(User)$/;"	v	class:Role
+user	tests/test_sqlalchemy.py	/^    user = relationship("User", uselist=False, backref="profile")$/;"	v	class:Profile
+user	tests/test_sqlalchemy.py	/^    user = relationship("User", uselist=False, backref="profile_nonincremental")$/;"	v	class:ProfileNonIncremental
+user_id	tests/test_flask.py	/^    user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)$/;"	v	class:Role
+user_id	tests/test_sqlalchemy.py	/^    user_id = Column(Integer, ForeignKey(User.id), nullable=False)$/;"	v	class:Role
+usermessages	tests/test_flask.py	/^usermessages = db.Table($/;"	v
+username	tests/django_app/models.py	/^    username = models.CharField(max_length=16, unique=True)$/;"	v	class:Rabbit
+username	tests/django_app/models.py	/^    username = models.CharField(max_length=20)$/;"	v	class:Client
+username	tests/test_flask.py	/^    username = db.Column(db.String(20), nullable=False)$/;"	v	class:User
+uuid	mixer/_faker.py	/^    def uuid() -> str:$/;"	m	class:MixerProvider
+uuid	tests/test_mongoengine.py	/^    uuid = UUIDField(required=True)$/;"	v	class:Post
+uuid	tests/test_sqlalchemy.py	/^        uuid = Column(UUID, nullable=False)$/;"	v	class:test_postgresql.Test
+validate	tests/test_marshmallow.py	/^        validate=ma.validate.OneOf(choices=("user", "moderator", "admin")),$/;"	v	class:Person
+value	tests/django_app/models.py	/^    value = models.IntegerField()$/;"	v	class:Simple
+verbose_name	tests/django_app/migrations/0001_initial.py	/^                        verbose_name="ID",$/;"	v	class:Migration
+version	docs/conf.py	/^version = ".".join(release.split(".")[:2])$/;"	v
+with_metaclass	mixer/_compat.py	/^def with_metaclass(meta, *bases):$/;"	f
+wrapper	mixer/main.py	/^        def wrapper(middleware: Callable) -> Callable:$/;"	f	function:Mixer.middleware
+wtf	tests/django_app/models.py	/^    wtf = models.ManyToManyField("self")$/;"	v	class:Number
