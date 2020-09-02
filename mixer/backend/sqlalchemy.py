@@ -2,63 +2,66 @@
 from __future__ import absolute_import
 
 import datetime
-from types import GeneratorType
-
 import decimal
+from types import GeneratorType
+from typing import Any, Callable, List, Optional, Tuple, Union
+
+from flask_sqlalchemy.model import DefaultMeta
 from sqlalchemy import func
+from sqlalchemy.ext.declarative.api import DeclarativeMeta
+from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 # from sqlalchemy.orm.interfaces import MANYTOONE
 from sqlalchemy.orm.collections import InstrumentedList
-from sqlalchemy.orm.attributes import InstrumentedAttribute
+from sqlalchemy.sql.schema import Column
 from sqlalchemy.sql.type_api import TypeDecorator
+
+from mixer.mix_types import Field, Select, _Deffered
 
 try:
     from sqlalchemy.orm.relationships import RelationshipProperty
 except ImportError:
     from sqlalchemy.orm.properties import RelationshipProperty
+
 from sqlalchemy.types import (
     BIGINT,
     BOOLEAN,
-    BigInteger,
-    Boolean,
     CHAR,
     DATE,
     DATETIME,
     DECIMAL,
-    Date,
-    DateTime,
     FLOAT,
-    Float,
     INT,
     INTEGER,
-    Integer,
     NCHAR,
-    NVARCHAR,
     NUMERIC,
-    Numeric,
+    NVARCHAR,
     SMALLINT,
-    SmallInteger,
-    String,
     TEXT,
     TIME,
+    VARCHAR,
+    BigInteger,
+    Boolean,
+    Date,
+    DateTime,
+    Enum,
+    Float,
+    Integer,
+    Numeric,
+    SmallInteger,
+    String,
     Text,
     Time,
     Unicode,
     UnicodeText,
-    VARCHAR,
-    Enum,
 )
 
 from .. import mix_types as t
-from ..main import (
-    SKIP_VALUE,
-    LOGGER,
-    TypeMixer as BaseTypeMixer,
-    GenFactory as BaseFactory,
-    Mixer as BaseMixer,
-    partial,
-    faker,
-)
+from ..main import LOGGER, SKIP_VALUE
+from ..main import GenFactory as BaseFactory
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
+from ..main import faker, partial
 
 
 class GenFactory(BaseFactory):
@@ -88,12 +91,14 @@ class TypeMixer(BaseTypeMixer):
 
     factory = GenFactory
 
-    def __init__(self, cls, **params):
+    def __init__(self, cls: Union[DefaultMeta, DeclarativeMeta], **params: Any) -> None:
         """ Init TypeMixer and save the mapper. """
         super(TypeMixer, self).__init__(cls, **params)
         self.mapper = self.__scheme._sa_class_manager.mapper
 
-    def postprocess(self, target, postprocess_values):
+    def postprocess(
+        self, target: Any, postprocess_values: List[Tuple[str, _Deffered]]
+    ) -> Any:
         """ Fill postprocess values. """
         mixed = []
 
@@ -119,7 +124,7 @@ class TypeMixer(BaseTypeMixer):
         return target
 
     @staticmethod
-    def get_default(field):
+    def get_default(field: Field) -> Union[int, object]:
         """Get default value from field.
 
         :return value: A default value or NO_VALUE
@@ -141,7 +146,7 @@ class TypeMixer(BaseTypeMixer):
 
         return getattr(column.default, "arg", SKIP_VALUE)
 
-    def gen_select(self, field_name, select):
+    def gen_select(self, field_name: str, select: Select) -> Tuple[str, _Deffered]:
         """Select exists value from database.
 
         :param field_name: Name of field for generation.
@@ -163,7 +168,7 @@ class TypeMixer(BaseTypeMixer):
         return self.get_value(field_name, value)
 
     @staticmethod
-    def is_unique(field):
+    def is_unique(field: Field) -> Optional[Any]:
         """Return True is field's value should be a unique.
 
         :return bool:
@@ -179,7 +184,7 @@ class TypeMixer(BaseTypeMixer):
 
         return scheme.unique
 
-    def is_required(self, field):
+    def is_required(self, field: Field) -> bool:
         """Return True is field's value should be defined.
 
         :return bool:
@@ -202,7 +207,7 @@ class TypeMixer(BaseTypeMixer):
 
         return not (column.nullable or autoincrement)
 
-    def get_value(self, field_name, field_value):
+    def get_value(self, field_name: str, field_value: Any) -> Tuple[str, Any]:
         """Get `value` as `field_name`.
 
         :return : None or (name, value) for later use
@@ -214,7 +219,13 @@ class TypeMixer(BaseTypeMixer):
 
         return super(TypeMixer, self).get_value(field_name, field_value)
 
-    def make_fabric(self, column, field_name=None, fake=False, kwargs=None):  # noqa
+    def make_fabric(
+        self,
+        column: Union[RelationshipProperty, Column],
+        field_name: str = None,
+        fake: bool = False,
+        kwargs: Optional[Any] = None,
+    ) -> Callable:  # noqa
         """Make values fabric for column.
 
         :param column: SqlAlchemy column
@@ -295,7 +306,10 @@ class TypeMixer(BaseTypeMixer):
         except (AttributeError, AssertionError):
             raise ValueError("Cannot make request to DB.")
 
-    def populate_target(self, values):
+    def populate_target(
+        self,
+        values: Any 
+    ) -> Any:
         target = self.__scheme()
         for n, v in values:
             if isinstance(
@@ -332,7 +346,9 @@ class Mixer(BaseMixer):
 
     type_mixer_cls = TypeMixer
 
-    def __init__(self, session=None, commit=True, **params):
+    def __init__(
+        self, session: Optional[Any] = None, commit: bool = True, **params: Any
+    ) -> None:
         """Initialize the SQLAlchemy Mixer.
 
         :param fake: (True) Generate fake data instead of random data.
@@ -344,7 +360,7 @@ class Mixer(BaseMixer):
         self.params["session"] = session
         self.params["commit"] = bool(session) and commit
 
-    def postprocess(self, target):
+    def postprocess(self, target: Any) -> Any:
         """Save objects in db.
 
         :return value: A generated value

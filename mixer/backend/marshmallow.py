@@ -11,28 +11,19 @@ from __future__ import absolute_import
 import datetime as dt
 import decimal
 
-from marshmallow import fields, validate, missing
+from marshmallow import fields, missing, validate
 
 from .. import mix_types as t
-from ..main import (
-    TypeMixer as BaseTypeMixer,
-    Mixer as BaseMixer,
-    GenFactory as BaseFactory,
-    LOGGER,
-    faker,
-    partial,
-    SKIP_VALUE,
-)
+from ..main import LOGGER, SKIP_VALUE
+from ..main import GenFactory as BaseFactory
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
+from ..main import faker, partial
 
 
 def get_nested(_scheme=None, _typemixer=None, _many=False, **kwargs):
     """Create nested objects."""
-    obj = TypeMixer(
-        _scheme,
-        mixer=_typemixer._TypeMixer__mixer,
-        factory=_typemixer._TypeMixer__factory,
-        fake=_typemixer._TypeMixer__fake,
-    ).blend(**kwargs)
+    obj = NestedMixer().blend(_scheme, **kwargs)
     if _many:
         return [obj]
     return obj
@@ -49,7 +40,7 @@ class GenFactory(BaseFactory):
         fields.Decimal: decimal.Decimal,
         (fields.Bool, fields.Boolean): bool,
         fields.Float: float,
-        (fields.DateTime, fields.LocalDateTime): dt.datetime,
+        fields.DateTime: dt.datetime,
         fields.Time: dt.time,
         fields.Date: dt.date,
         (fields.URL, fields.Url): t.URL,
@@ -101,9 +92,7 @@ class TypeMixer(BaseTypeMixer):
 
     def populate_target(self, values):
         """ Populate target. """
-        data, errors = self.__scheme().load(dict(values))
-        if errors:
-            LOGGER.error("Mixer-marshmallow: %r", errors)
+        data = self.__scheme().load(dict(values))
         return data
 
     def make_fabric(self, field, field_name=None, fake=False, kwargs=None):  # noqa
@@ -116,7 +105,7 @@ class TypeMixer(BaseTypeMixer):
 
         if isinstance(field, fields.List):
             fab = self.make_fabric(
-                field.container, field_name=field_name, fake=fake, kwargs=kwargs
+                field.inner, field_name=field_name, fake=fake, kwargs=kwargs
             )
             return lambda: [fab() for _ in range(faker.small_positive_integer(4))]
 
@@ -127,6 +116,12 @@ class TypeMixer(BaseTypeMixer):
         return super(TypeMixer, self).make_fabric(
             type(field), field_name=field_name, fake=fake, kwargs=kwargs
         )
+
+
+class NestedTypeMixer(TypeMixer):
+    def populate_target(self, values):
+        """ Populate target. """
+        return dict(values)
 
 
 class Mixer(BaseMixer):
@@ -140,6 +135,11 @@ class Mixer(BaseMixer):
 
         # All fields is required by default
         self.params.setdefault("required", True)
+
+
+class NestedMixer(Mixer):
+
+    type_mixer_cls = NestedTypeMixer
 
 
 mixer = Mixer()

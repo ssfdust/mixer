@@ -1,24 +1,23 @@
 from __future__ import absolute_import
 
 from datetime import datetime
+from random import randrange
 
+import pytest
 from sqlalchemy import (
     Boolean,
     Column,
     DateTime,
+    Enum,
+    ForeignKey,
     Integer,
     SmallInteger,
     String,
     create_engine,
-    ForeignKey,
-    Enum,
+    types,
 )
-from sqlalchemy.orm import relation, sessionmaker, relationship, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import types
-from random import randrange
-import pytest
-
+from sqlalchemy.orm import relation, relationship, scoped_session, sessionmaker
 
 ENGINE = create_engine("sqlite:///:memory:")
 BASE = declarative_base()
@@ -218,8 +217,9 @@ def test_nonincremental_primary_key(session):
 
 
 def test_postgresql():
-    from mixer.backend.sqlalchemy import TypeMixer
     from sqlalchemy.dialects.postgresql import UUID
+
+    from mixer.backend.sqlalchemy import TypeMixer
 
     base = declarative_base()
 

@@ -1,10 +1,8 @@
 from django.conf import settings
-from django.contrib.contenttypes import models as ct_models
-
-from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.contenttypes import models as ct_models
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.db import models
 
 
 class CustomField(models.CharField):

@@ -24,6 +24,7 @@ from __future__ import absolute_import
 
 import datetime
 import decimal
+from typing import Any, Callable, Optional, Union
 
 from bson import ObjectId
 from mongoengine import (
@@ -47,19 +48,21 @@ from mongoengine import (
     URLField,
     UUIDField,
 )
+from mongoengine.base.fields import ObjectIdField
+from mongoengine.fields import EmailField
+
+from mixer.mix_types import Field
+from tests.test_mongoengine import User
 
 from .. import mix_types as t
-from ..main import (
-    SKIP_VALUE,
-    TypeMixer as BaseTypeMixer,
-    GenFactory as BaseFactory,
-    Mixer as BaseMixer,
-    partial,
-    faker,
-)
+from ..main import SKIP_VALUE
+from ..main import GenFactory as BaseFactory
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
+from ..main import faker, partial
 
 
-def get_objectid(**kwargs):
+def get_objectid(**kwargs: Any) -> ObjectId:
     """Create a new ObjectId instance.
 
     :return ObjectId:
@@ -160,7 +163,13 @@ class TypeMixer(BaseTypeMixer):
 
     factory = GenFactory
 
-    def make_fabric(self, me_field, field_name=None, fake=None, kwargs=None):  # noqa
+    def make_fabric(
+        self,
+        me_field: Union[ObjectIdField, EmailField],
+        field_name: str = None,
+        fake: bool = None,
+        kwargs: Optional[Any] = None,
+    ) -> Callable:  # noqa
         """Make a fabric for field.
 
         :param me_field: Mongoengine field's instance
@@ -205,7 +214,7 @@ class TypeMixer(BaseTypeMixer):
         )
 
     @staticmethod
-    def get_default(field):
+    def get_default(field: Field) -> Optional[datetime.datetime]:
         """Get default value from field.
 
         :return value: A default value or NO_VALUE
@@ -220,7 +229,7 @@ class TypeMixer(BaseTypeMixer):
         return field.scheme.default
 
     @staticmethod
-    def is_unique(field):
+    def is_unique(field: Field) -> bool:
         """Return True is field's value should be a unique.
 
         :return bool:
@@ -229,7 +238,7 @@ class TypeMixer(BaseTypeMixer):
         return field.scheme.unique
 
     @staticmethod
-    def is_required(field):
+    def is_required(field: Field) -> bool:
         """Return True is field's value should be defined.
 
         :return bool:
@@ -291,7 +300,7 @@ class Mixer(BaseMixer):
 
     type_mixer_cls = TypeMixer
 
-    def __init__(self, commit=True, **params):
+    def __init__(self, commit: bool = True, **params: Any) -> None:
         """Initialize the Mongoengine Mixer.
 
         :param fake: (True) Generate fake data instead of random data.
@@ -301,7 +310,7 @@ class Mixer(BaseMixer):
         super(Mixer, self).__init__(**params)
         self.params["commit"] = commit
 
-    def postprocess(self, target):
+    def postprocess(self, target: User) -> User:
         """Save instance to DB.
 
         :return instance:

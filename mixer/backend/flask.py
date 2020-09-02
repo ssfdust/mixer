@@ -11,7 +11,12 @@ See example: ::
 """
 from __future__ import absolute_import
 
-from .sqlalchemy import TypeMixer, Mixer as BaseMixer
+from typing import Any, Optional
+
+from flask.app import Flask
+
+from .sqlalchemy import Mixer as BaseMixer
+from .sqlalchemy import TypeMixer
 
 
 class Mixer(BaseMixer):
@@ -20,7 +25,9 @@ class Mixer(BaseMixer):
 
     type_mixer_cls = TypeMixer
 
-    def __init__(self, app=None, commit=True, **kwargs):
+    def __init__(
+        self, app: Optional[Any] = None, commit: bool = True, **kwargs: Any
+    ) -> None:
         """Initialize the SQLAlchemy Mixer.
 
         :param fake: (True) Generate fake data instead of random data.
@@ -33,7 +40,7 @@ class Mixer(BaseMixer):
         if app:
             self.init_app(app)
 
-    def init_app(self, app):
+    def init_app(self, app: Flask) -> None:
         """Init application.
 
         This callback can be used to initialize an application for the

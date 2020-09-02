@@ -7,16 +7,17 @@ import pytest
 from django.core.management import call_command
 
 from .django_app.models import (
-    Rabbit,
-    models,
-    Hole,
-    Door,
-    Customer,
-    Simple,
     Client,
-    Tag,
+    Customer,
+    Door,
+    Hole,
     Message,
+    Rabbit,
+    Simple,
+    Tag,
+    models,
 )
+
 from mixer.backend.django import Mixer
 
 

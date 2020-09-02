@@ -3,8 +3,12 @@
 import datetime
 import decimal
 import inspect
+from typing import Any, Callable, Iterator, Optional, Union
 
-from . import _compat as _, mix_types as t
+from sqlalchemy.sql.visitors import VisitableType
+
+from . import _compat as _
+from . import mix_types as t
 from ._faker import faker
 
 
@@ -44,7 +48,7 @@ class GenFactoryMeta(type):
         return super(GenFactoryMeta, mcs).__new__(mcs, name, bases, params)
 
     @staticmethod
-    def __flat_keys(d):
+    def __flat_keys(d: Any) -> Iterator[Any]:
         for key, value in d.items():
             if isinstance(key, (tuple, list)):
                 for k in key:
@@ -131,7 +135,7 @@ class GenFactory(_.with_metaclass(GenFactoryMeta)):
     }
 
     @classmethod
-    def cls_to_simple(cls, fcls):
+    def cls_to_simple(cls, fcls: Union[VisitableType, type]) -> Optional[type]:
         """Translate class to one of simple base types.
 
         :return type: A simple type for generation
@@ -151,7 +155,7 @@ class GenFactory(_.with_metaclass(GenFactoryMeta)):
         return None
 
     @staticmethod
-    def name_to_simple(fname):
+    def name_to_simple(fname: str) -> str:
         """Translate name to one of simple base names.
 
         :return str:
@@ -161,7 +165,9 @@ class GenFactory(_.with_metaclass(GenFactoryMeta)):
         return fname.lower().strip()
 
     @classmethod
-    def get_fabric(cls, fcls, fname=None, fake=False):
+    def get_fabric(
+        cls, fcls: type, fname: Optional[str] = None, fake: bool = False
+    ) -> Union[Callable, bool]:
         """Make a objects fabric  based on class and name.
 
         :return function:

@@ -5,12 +5,12 @@ try:
     import cPickle as pickle
 except ImportError:
     import pickle
+
 import logging
 import os
 import random
 import re
 from collections import defaultdict
-
 
 PUNCTUATION = re.compile(r"([\.,;!?])")
 

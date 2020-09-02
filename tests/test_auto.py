@@ -9,9 +9,10 @@ def test_main():
 
 def test_django():
     from django.core.management import call_command
-    from mixer.auto import mixer
 
     from .django_app.models import Rabbit
+
+    from mixer.auto import mixer
 
     call_command("migrate", interactive=False)
 
@@ -29,6 +30,7 @@ def test_django():
 
 def test_sqlalchemy():
     from mixer.auto import mixer
+
     from .test_sqlalchemy import User
 
     user = mixer.blend(User)

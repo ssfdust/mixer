@@ -1,6 +1,11 @@
 """ Mixer types. """
 
+from collections import OrderedDict
 from copy import deepcopy
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from mixer.main import TypeMixer
 
 
 class BigInteger:
@@ -122,19 +127,21 @@ class Mix(object):
 
     """
 
-    def __init__(self, value=None, parent=None):
+    def __init__(
+        self, value: Optional[str] = None, parent: Optional["Mix"] = None
+    ) -> None:
         self.__value = value
         self.__parent = parent
         self.__func = None
 
-    def __getattr__(self, value):
+    def __getattr__(self, value: str) -> "Mix":
         return Mix(value, self if self.__value else None)
 
-    def __call__(self, func):
+    def __call__(self, func: Callable) -> "Mix":
         self.__func = func
         return self
 
-    def __and__(self, values):
+    def __and__(self, values: Union[Dict[str, Any], type]) -> Any:
         if self.__parent:
             values = self.__parent & values
         if isinstance(values, dict):
@@ -158,13 +165,13 @@ class ServiceValue(object):
 
     """ Abstract class for mixer values. """
 
-    def __init__(self, scheme=None, *choices, **params):
+    def __init__(self, scheme: Any = None, *choices: Any, **params: Any) -> None:
         self.scheme = scheme
         self.choices = choices
         self.params = params
 
     @classmethod
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args: Any, **kwargs: Any) -> Any:
         return cls(*args, **kwargs)
 
     def gen_value(self, type_mixer, name, field):
@@ -206,14 +213,19 @@ class Field(ServiceValue):
 
     """
 
-    def __init__(self, scheme, name, **params):
+    def __init__(self, scheme: Any, name: str, **params: Any) -> None:
         self.name = name
         super(Field, self).__init__(scheme, **params)
 
-    def __deepcopy__(self, memo):
+    def __deepcopy__(self, memo: "Field") -> "Field":
         return Field(self.scheme, self.name, **deepcopy(self.params))
 
-    def gen_value(self, type_mixer, name, field):
+    def gen_value(
+        self,
+        type_mixer: "TypeMixer",
+        name: str,
+        field: "Field",
+    ) -> Tuple[str, Any]:
         """Call :meth:`TypeMixer.gen_field`.
 
         :return value: A generated value
@@ -256,7 +268,9 @@ class Fake(ServiceValue):
 
     """
 
-    def gen_value(self, type_mixer, name, fake):
+    def gen_value(
+        self, type_mixer: "TypeMixer", name: str, fake: "Fake"
+    ) -> Tuple[str, Union[bool, str]]:
         """Call :meth:`TypeMixer.gen_fake`.
 
         :return value: A generated value
@@ -304,12 +318,19 @@ class Random(ServiceValue):
 
     """
 
-    def __init__(self, scheme=None, *choices, **params):
+    def __init__(
+        self, scheme: Union[None, str, type] = None, *choices: str, **params: Any
+    ) -> None:
         super(Random, self).__init__(scheme, *choices, **params)
         if scheme is not None:
             self.choices += (scheme,)
 
-    def gen_value(self, type_mixer, name, random):
+    def gen_value(
+        self,
+        type_mixer: "TypeMixer",
+        name: str,
+        random: "Random",
+    ) -> Tuple[str, Union["_Deffered", str]]:
         """Call :meth:`TypeMixer.gen_random`.
 
         :return value: A generated value
@@ -342,7 +363,9 @@ class Select(Random):
 
     """
 
-    def gen_value(self, type_mixer, name, field):
+    def gen_value(
+        self, type_mixer: "TypeMixer", name: str, field: "Select"
+    ) -> Tuple[str, Any]:
         """Call :meth:`TypeMixer.gen_random`.
 
         :return value: A generated value
@@ -355,6 +378,10 @@ class _Deffered(object):
 
     """ A type which will be generated later. """
 
-    def __init__(self, value, scheme=None):
+    def __init__(
+        self,
+        value: Any,
+        scheme: Optional[Any] = None,
+    ) -> None:
         self.value = value
         self.scheme = scheme

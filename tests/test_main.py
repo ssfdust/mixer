@@ -1,8 +1,8 @@
 """ Test mixer base functionality. """
 import datetime
+from decimal import Decimal
 
 import pytest
-from decimal import Decimal
 
 from mixer.main import Mixer, TypeMixer
 

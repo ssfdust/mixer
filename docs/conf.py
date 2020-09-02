@@ -1,9 +1,9 @@
 """ Sphinx configuration. """
 # -*- coding: utf-8 -*-
 
+import datetime
 import os
 import sys
-import datetime
 
 from mixer import __version__ as release
 

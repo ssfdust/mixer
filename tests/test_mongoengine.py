@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from mongoengine import *
+
 import datetime
+
+from mongoengine import *
 
 
 class User(Document):

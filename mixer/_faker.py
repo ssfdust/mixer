@@ -2,9 +2,11 @@
 import decimal as dc
 import locale as pylocale
 from collections import defaultdict
+from decimal import Decimal
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from faker import Factory, Generator
-from faker.config import DEFAULT_LOCALE, AVAILABLE_LOCALES, PROVIDERS
+from faker.config import AVAILABLE_LOCALES, DEFAULT_LOCALE, PROVIDERS
 from faker.providers import BaseProvider
 
 SMALLINT = 32768  # Safe in most databases according to Django docs
@@ -57,11 +59,11 @@ class MixerProvider(BaseProvider):
 
     """ Implement some mixer methods. """
 
-    def __init__(self, generator):
+    def __init__(self, generator: Generator) -> None:
         self.providers = []
         self.generator = generator
 
-    def load(self, providers=PROVIDERS, locale=None):
+    def load(self, providers: List[str] = PROVIDERS, locale: str = None) -> None:
         if locale is None:
             locale = self.generator.locale
 
@@ -72,7 +74,7 @@ class MixerProvider(BaseProvider):
             provider.__lang__ = lang_found
             self.generator.add_provider(provider)
 
-    def big_integer(self):
+    def big_integer(self) -> int:
         """Get a big integer.
 
         Get integer from -9223372036854775808 to 9223372036854775807.
@@ -80,7 +82,7 @@ class MixerProvider(BaseProvider):
         """
         return self.generator.random_int(-9223372036854775808, 9223372036854775807)
 
-    def ip_generic(self, protocol=None):
+    def ip_generic(self, protocol: Optional[str] = None) -> str:
         """Get IP (v4 or v6) address.
 
         :param protocol:
@@ -98,24 +100,24 @@ class MixerProvider(BaseProvider):
             self.generator.ipv4() if self.generator.boolean() else self.generator.ipv6()
         )
 
-    def positive_decimal(self, **kwargs):
+    def positive_decimal(self, **kwargs: Any) -> Decimal:
         """ Get a positive decimal. """
         return self.generator.pydecimal(positive=True, **kwargs)
 
-    def positive_integer(self, max=2147483647):  # noqa
+    def positive_integer(self, max: int = 2147483647) -> int:  # noqa
         """ Get a positive integer. """
         return self.random_int(0, max=max)  # noqa
 
-    def small_integer(self, min=-SMALLINT, max=SMALLINT):  # noqa
+    def small_integer(self, min: int = -SMALLINT, max: int = SMALLINT) -> int:  # noqa
         """ Get a positive integer. """
         return self.random_int(min=min, max=max)  # noqa
 
-    def small_positive_integer(self, max=SMALLINT):  # noqa
+    def small_positive_integer(self, max: int = SMALLINT) -> int:  # noqa
         """ Get a positive integer. """
         return self.random_int(0, max=max)  # noqa
 
     @staticmethod
-    def uuid():
+    def uuid() -> str:
         import uuid
 
         return str(uuid.uuid1())
@@ -123,20 +125,20 @@ class MixerProvider(BaseProvider):
     def genre(self):
         return self.random_element(GENRES)
 
-    def percent(self):
+    def percent(self) -> int:
         return self.random_int(0, 100)
 
-    def percent_decimal(self):
+    def percent_decimal(self) -> Decimal:
         return dc.Decimal("0.%d" % self.random_int(0, 99)) + dc.Decimal("0.01")
 
-    def title(self):
+    def title(self) -> str:
         words = self.generator.words(6)
         return " ".join(words).title()
 
-    def coordinates(self):
+    def coordinates(self) -> Tuple[Decimal, Decimal]:
         return (self.generator.latitude(), self.generator.longitude())
 
-    def pybytes(self, size=20):
+    def pybytes(self, size: int = 20) -> bytes:
         return self.pystr(size).encode("utf-8")
 
 
@@ -144,33 +146,35 @@ class MixerGenerator(Generator):
 
     """ Support dynamic locales switch. """
 
-    def __init__(self, locale=DEFAULT_LOCALE, providers=PROVIDERS, **config):
+    def __init__(
+        self, locale: str = DEFAULT_LOCALE, providers=PROVIDERS, **config: Any
+    ):
         self._locale = None
-        self._envs = defaultdict(self.__create_env)
+        self._envs: Dict[str, "MixerProvider"] = defaultdict(self.__create_env)
         self.locale = locale
         super(MixerGenerator, self).__init__(**config)
         self.env.load(providers)
 
-    def __create_env(self):
+    def __create_env(self) -> "MixerProvider":
         return MixerProvider(self)
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str) -> Callable:
         return getattr(self.env, name)
 
     @property
-    def providers(self):
+    def providers(self) -> List[Any]:
         return self.env.providers
 
     @providers.setter
-    def providers(self, value):
+    def providers(self, value) -> None:
         self.env.providers = value
 
     @property
-    def locale(self):
+    def locale(self) -> str:
         return self._locale
 
     @locale.setter
-    def locale(self, value):
+    def locale(self, value: str) -> None:
         value = pylocale.normalize(value.replace("-", "_")).split(".")[0]
         if value not in AVAILABLE_LOCALES:
             value = DEFAULT_LOCALE
@@ -186,10 +190,10 @@ class MixerGenerator(Generator):
             nenv.load([p.__provider__ for p in senv.providers], value)
 
     @property
-    def env(self):
+    def env(self) -> "MixerProvider":
         return self._envs[self._locale]
 
-    def set_formatter(self, name, method):
+    def set_formatter(self, name: str, method: Callable) -> None:
         if not hasattr(self.env, name):
             setattr(self.env, name, method)
 

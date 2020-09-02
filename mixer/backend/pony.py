@@ -9,7 +9,9 @@ from __future__ import absolute_import
 from pony.orm import commit
 
 from .. import mix_types as t
-from ..main import TypeMixer as BaseTypeMixer, Mixer as BaseMixer, SKIP_VALUE
+from ..main import SKIP_VALUE
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
 
 
 class TypeMixer(BaseTypeMixer):

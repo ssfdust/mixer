@@ -29,6 +29,13 @@ from ..main import (
 )
 
 
+from datetime import date, time
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+
+from django.db.models.fields.related import ForeignKey, ManyToManyField, OneToOneField
+
+from mixer.mix_types import Field, Select, _Deffered
+
 get_contentfile = ContentFile
 
 MOCK_FILE = path.abspath(
@@ -50,7 +57,7 @@ class UTCZone(dt.tzinfo):
 UTC = UTCZone()
 
 
-def get_file(filepath=MOCK_FILE, **kwargs):
+def get_file(filepath: str = MOCK_FILE, **kwargs: Any) -> ContentFile:
     """Generate a content file.
 
     :return ContentFile:
@@ -70,7 +77,11 @@ def get_image(filepath=MOCK_IMAGE):
     return get_file(filepath)
 
 
-def get_relation(_scheme=None, _typemixer=None, **params):
+def get_relation(
+    _scheme: Union[ForeignKey, ManyToManyField, OneToOneField] = None,
+    _typemixer: "TypeMixer" = None,
+    **params: Any
+) -> Any:
     """ Function description. """
     scheme = _scheme.related_model
 
@@ -86,7 +97,7 @@ def get_relation(_scheme=None, _typemixer=None, **params):
     ).blend(**params)
 
 
-def get_datetime(**params):
+def get_datetime(**params: Any) -> dt:
     """ Support Django TZ support. """
     return faker.date_time(tzinfo=UTC if settings.USE_TZ else None)
 
@@ -177,7 +188,9 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
     factory = GenFactory
 
-    def postprocess(self, target, postprocess_values):
+    def postprocess(
+        self, target: Any, postprocess_values: List[Tuple[str, _Deffered]]
+    ) -> Any:
         """ Fill postprocess_values. """
         for name, deffered in postprocess_values:
             if not isinstance(deffered.scheme, GenericForeignKey):
@@ -217,7 +230,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return target
 
-    def get_value(self, name, value):
+    def get_value(self, name: str, value: Any) -> Tuple[str, Any]:
         """Set value to generated instance.
 
         :return : None or (name, value) for later use
@@ -235,7 +248,9 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return super(TypeMixer, self).get_value(name, value)
 
-    def _get_value(self, name, value, field=None):
+    def _get_value(
+        self, name: str, value: Any, field: Optional[Field] = None
+    ) -> Tuple[str, Any]:
 
         if isinstance(value, GeneratorType):
             return self._get_value(name, next(value), field)
@@ -250,7 +265,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return name, value
 
-    def gen_select(self, field_name, select):
+    def gen_select(self, field_name: str, select: Select) -> Tuple[str, Optional[Any]]:
         """Select exists value from database.
 
         :param field_name: Name of field for generation.
@@ -275,7 +290,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
                 "Cannot find a value for the field: '{0}'".format(field_name)
             )
 
-    def gen_field(self, field):
+    def gen_field(self, field: Field) -> Tuple[str, Union[date, time, object]]:
         """Generate value by field.
 
         :param relation: Instance of :class:`Field`
@@ -291,7 +306,13 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return super(TypeMixer, self).gen_field(field)
 
-    def make_fabric(self, field, fname=None, fake=False, kwargs=None):  # noqa
+    def make_fabric(
+        self,
+        field: Any,
+        fname: str = None,
+        fake: bool = False,
+        kwargs: Optional[Dict[str, str]] = None,
+    ) -> Callable:  # noqa
         """Make a fabric for field.
 
         :param field: A mixer field
@@ -352,7 +373,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
         )
 
     @staticmethod
-    def is_unique(field):
+    def is_unique(field: Field) -> bool:
         """Return True is field's value should be a unique.
 
         :return bool:
@@ -361,7 +382,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
         return field.scheme.unique
 
     @staticmethod
-    def is_required(field):
+    def is_required(field: Field) -> bool:
         """Return True is field's value should be defined.
 
         :return bool:
@@ -384,7 +405,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return True
 
-    def guard(self, *args, **kwargs):
+    def guard(self, *args: Any, **kwargs: Any) -> Any:
         """Look objects in database.
 
         :returns: A finded object or False
@@ -401,7 +422,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta, BaseTypeMixer)):
 
         return False
 
-    def reload(self, obj):
+    def reload(self, obj: Any) -> Any:
         """ Reload object from database. """
         if not obj.pk:
             raise ValueError("Cannot load the object: %s" % obj)
@@ -434,7 +455,7 @@ class Mixer(BaseMixer):
 
     type_mixer_cls = TypeMixer
 
-    def __init__(self, commit=True, **params):
+    def __init__(self, commit: bool = True, **params: Any) -> None:
         """Initialize Mixer instance.
 
         :param commit: (True) Save object to database.
@@ -443,7 +464,7 @@ class Mixer(BaseMixer):
         super(Mixer, self).__init__(**params)
         self.params["commit"] = commit
 
-    def postprocess(self, target):
+    def postprocess(self, target: Any) -> Any:
         """Save objects in db.
 
         :return value: A generated value

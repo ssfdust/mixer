@@ -11,21 +11,26 @@ The module implements objects generation.
 """
 from __future__ import absolute_import, unicode_literals
 
-import warnings
-from types import GeneratorType
-
 import logging
 import traceback
+import warnings
 from collections import defaultdict
 from contextlib import contextmanager
 from copy import deepcopy
+from datetime import date, datetime
 from functools import partial
-from types import FunctionType, MethodType, BuiltinFunctionType
+from types import BuiltinFunctionType, FunctionType, GeneratorType, MethodType
+from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union
 
-from . import mix_types as t, _compat as _
-from .factory import GenFactory
+from django.db.models.base import ModelBase
+
+from mixer.factory import GenFactoryMeta
+from mixer.mix_types import Fake, Field, Mix, Random, Select, _Deffered
+
+from . import _compat as _
+from . import mix_types as t
 from ._faker import faker
-
+from .factory import GenFactory
 
 SKIP_VALUE = object()
 
@@ -58,7 +63,7 @@ class TypeMixerMeta(type):
         return cls.mixers[key]
 
     @staticmethod
-    def __load_cls(cls_type):
+    def __load_cls(cls_type: Any) -> Any:
         if isinstance(cls_type, _.string_types):
             mod, cls_type = cls_type.rsplit(".", 1)
             mod = _.import_module(mod)
@@ -78,7 +83,13 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
     SELECT = property(lambda s: Mixer.SELECT)
     SKIP = property(lambda s: Mixer.SKIP)
 
-    def __init__(self, cls, mixer=None, factory=None, fake=True):
+    def __init__(
+        self,
+        cls: Any,
+        mixer: Any = None,
+        factory: Optional[GenFactoryMeta] = None,
+        fake: bool = True,
+    ) -> None:
         self.middlewares = []
         self.__factory = factory or self.factory
         self.__fake = fake
@@ -91,7 +102,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
     def __repr__(self):
         return "<TypeMixer {0}>".format(self.__scheme)
 
-    def blend(self, **values):
+    def blend(self, **values: Any) -> Any:
         """Generate object.
 
         :param **values: Predefined fields
@@ -143,7 +154,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         LOGGER.info("Blended: %s [%s]", target, self.__scheme)  # noqa
         return target
 
-    def postprocess(self, target, postprocess_values):
+    def postprocess(self, target: Any, postprocess_values: List) -> Any:
         """ Run the code after a generation. """
         if self.__mixer:
             target = self.__mixer.postprocess(target)
@@ -153,14 +164,16 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return target
 
-    def populate_target(self, values):
+    def populate_target(self, values: Any) -> Any:
         """ Populate a target by values. """
         target = self.__scheme()
         for name, value in values:
             setattr(target, name, value)
         return target
 
-    def get_value(self, name, value):
+    def get_value(
+        self, name: str, value: Any
+    ) -> Tuple[str, Any]:
         """Prepare value for field with name.
 
         :return : (name, value) or None
@@ -174,7 +187,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return name, value
 
-    def gen_field(self, field):
+    def gen_field(self, field: Field) -> Any:
         """Generate value by field.
 
         :param field: Instance of :class:`Field`
@@ -193,7 +206,9 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         unique = self.is_unique(field)
         return self.gen_value(field.name, field, unique=unique)
 
-    def gen_random(self, field_name, random):
+    def gen_random(
+        self, field_name: str, random: Random
+    ) -> Any:
         """Generate a random value for field with `field_name`.
 
         :param field_name: Name of field for generation.
@@ -212,7 +227,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
     gen_select = gen_random
 
-    def gen_fake(self, field_name, fake):
+    def gen_fake(self, field_name: str, fake: Fake) -> Any:
         """Generate a fake value for field with `field_name`.
 
         :param field_name: Name of field for generation.
@@ -226,7 +241,13 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return self.gen_value(field_name, fake, fake=True)
 
-    def gen_value(self, field_name, field, fake=None, unique=False):
+    def gen_value(
+        self,
+        field_name: str,
+        field: Field,
+        fake: Optional[bool] = None,
+        unique: Optional[bool] = False,
+    ) -> Tuple[str, Any]:
         """Generate values from basic types.
 
         :return : (name, value) for later use
@@ -265,7 +286,9 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return self.get_value(field_name, value)
 
-    def get_fabric(self, field, field_name=None, fake=None):
+    def get_fabric(
+        self, field: Field, field_name: str = None, fake: bool = None
+    ) -> Callable:
         """Get an objects fabric for field and cache it.
 
         :param field: Field for looking a fabric
@@ -288,7 +311,13 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return self.__fabrics[key]
 
-    def make_fabric(self, scheme, field_name=None, fake=None, kwargs=None):  # noqa
+    def make_fabric(
+        self,
+        scheme: type,
+        field_name: str = None,
+        fake: bool = None,
+        kwargs: Optional[Dict[str, Any]] = None,
+    ) -> Callable:  # noqa
         """Make a fabric for scheme.
 
         :param field_class: Class for looking a fabric
@@ -314,7 +343,9 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
 
         return fab
 
-    def register(self, field_name, func, fake=None):
+    def register(
+        self, field_name: str, func: Union[Callable, str], fake: bool = None
+    ) -> Optional[bool]:
         """Register function as fabric for the field.
 
         :param field_name: Name of field for generation
@@ -350,7 +381,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
             self.__fabrics[key] = lambda: func
 
     @staticmethod
-    def is_unique(field):
+    def is_unique(field: Field) -> bool:
         """Return True is field's value should be a unique.
 
         :return bool:
@@ -359,7 +390,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         return False
 
     @staticmethod
-    def is_required(field):
+    def is_required(field: Field) -> bool:
         """Return True is field's value should be defined.
 
         :return bool:
@@ -368,7 +399,7 @@ class TypeMixer(_.with_metaclass(TypeMixerMeta)):
         return True
 
     @staticmethod
-    def get_default(field):
+    def get_default(field: Field) -> object:
         """Return a default value for the field if it exists.
 
         :return value:
@@ -408,12 +439,17 @@ class ProxyMixer:
 
     """
 
-    def __init__(self, mixer, count=5, guards=None):
+    def __init__(
+        self,
+        mixer: Any,
+        count: int = 5,
+        guards: Optional[Tuple[Tuple[()], Dict[str, str]]] = None,
+    ) -> None:
         self.count = count
         self.mixer = mixer
         self.guards = guards
 
-    def blend(self, scheme, **values):
+    def blend(self, scheme: Any, **values: Any) -> Any:
         """Call :meth:`Mixer.blend` a few times. And stack results to list.
 
         :returns: A list of generated objects.
@@ -470,13 +506,13 @@ class Mixer(_.with_metaclass(_MetaMixer)):
 
     def __init__(
         self,
-        fake=True,
-        factory=None,
-        loglevel=LOGLEVEL,
-        silence=False,
-        locale=faker.locale,
-        **params
-    ):
+        fake: bool = True,
+        factory: Optional[GenFactoryMeta] = None,
+        loglevel: int = LOGLEVEL,
+        silence: bool = False,
+        locale: str = faker.locale,
+        **params: Any
+    ) -> None:
         """Initialize the Mixer instance.
 
         :param fake: (True) Generate fake data instead of random data.
@@ -505,7 +541,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         raise AttributeError("Attribute %s not found." % name)
 
     @property
-    def SKIP(self, *args, **kwargs):
+    def SKIP(self, *args: Any, **kwargs: Any) -> object:
         """Do not generate a field.
 
         ::
@@ -518,7 +554,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return SKIP_VALUE
 
     @property
-    def FAKE(self, *args, **kwargs):
+    def FAKE(self, *args: Any, **kwargs: Any) -> Fake:
         """Force generation of fake values. See :class:`~mixer.main.Fake`.
 
         :returns: Fake object
@@ -527,7 +563,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return self.__class__.FAKE
 
     @property
-    def RANDOM(self, *args, **kwargs):
+    def RANDOM(self, *args: Any, **kwargs: Any) -> Random:
         """Force generation of random values. See :class:`~mixer.main.Random`.
 
         :returns: Random object
@@ -536,7 +572,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return self.__class__.RANDOM
 
     @property
-    def SELECT(self, *args, **kwargs):
+    def SELECT(self, *args: Any, **kwargs: Any) -> Select:
         """Select data from a storage. See :class:`~mixer.main.Select`.
 
         :returns: Select object
@@ -545,7 +581,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return self.__class__.SELECT
 
     @property
-    def MIX(self, *args, **kwargs):
+    def MIX(self, *args: Any, **kwargs: Any) -> Mix:
         """Point to mixed object from future. See :class:`~mixer.main.Mix`.
 
         :returns: Mix object
@@ -553,7 +589,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         """
         return self.__class__.MIX
 
-    def __init_params__(self, locale=None, **params):
+    def __init_params__(self, locale: Optional[str] = None, **params: Any) -> None:
         self.params.update(params)
         if locale:
             faker.locale = locale
@@ -563,7 +599,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
     def __repr__(self):
         return "<Mixer [{0}]>".format("fake" if self.params.get("fake") else "rand")
 
-    def blend(self, scheme, **values):
+    def blend(self, scheme: Any, **values: Any) -> Any:
         """Generate instance of `scheme`.
 
         :param scheme: Scheme class for generation or string with class path.
@@ -592,7 +628,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
             LOGGER.error(traceback.format_exc())
             raise
 
-    def get_typemixer(self, scheme):
+    def get_typemixer(self, scheme: Any) -> Any:
         """Return a cached typemixer instance.
 
         :return TypeMixer:
@@ -603,7 +639,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         )
 
     @staticmethod
-    def postprocess(target):
+    def postprocess(target: Any) -> Any:
         """Run the code after generation.
 
         :return target:
@@ -612,7 +648,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         return target
 
     @staticmethod  # noqa
-    def sequence(*args):
+    def sequence(*args: Any) -> Iterator:
         """Create a sequence for predefined values.
 
         It makes a infinity loop with given function where does increment the
@@ -662,7 +698,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         """
         if len(args) > 1:
 
-            def gen():
+            def gen() -> Iterator[Union[Iterator, Iterator[int]]]:
                 while True:
                     for o in args:
                         yield o
@@ -676,7 +712,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         elif func is None:
             func = lambda x: x
 
-        def gen2():
+        def gen2() -> Iterator[Union[Iterator, Iterator[int], Iterator[str]]]:
             counter = 0
             while True:
                 yield func(counter)
@@ -684,7 +720,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
 
         return gen2()
 
-    def cycle(self, count=5):
+    def cycle(self, count: int = 5) -> ProxyMixer:
         """Generate a few objects. The syntastic sugar for cycles.
 
         :param count: List of objects or integer.
@@ -703,7 +739,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         """
         return ProxyMixer(self, count)
 
-    def middleware(self, scheme):
+    def middleware(self, scheme: Union[str, type]) -> Callable:
         """Middleware decorator.
 
         You could add the middleware layers to generation process: ::
@@ -726,7 +762,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
             scheme, mixer=self, fake=self.params.get("fake"), factory=self.__factory
         )
 
-        def wrapper(middleware):
+        def wrapper(middleware: Callable) -> Callable:
             type_mixer.middlewares.append(middleware)
             return middleware
 
@@ -739,7 +775,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         )
         type_mixer.middlewares.remove(middleware)
 
-    def register(self, scheme, **params):
+    def register(self, scheme: Union[ModelBase, str, type], **params: Any) -> None:
         """Manualy register a function as value's generator for class.field.
 
         :param scheme: Scheme for generation (class or class path)
@@ -778,7 +814,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
                 type_mixer.register(field_name, func, fake=False)
 
     @contextmanager
-    def ctx(self, **params):
+    def ctx(self, **params: Any) -> Iterator[Iterator["Mixer"]]:
         """Redifine params for current mixer as context.
 
         ::
@@ -798,7 +834,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         finally:
             self.__init_params__(**_params)
 
-    def reload(self, *objs):
+    def reload(self, *objs: Any) -> Any:
         """ Reload the objects from storage. """
         results = []
         for obj in objs:
@@ -808,7 +844,7 @@ class Mixer(_.with_metaclass(_MetaMixer)):
 
         return results if len(results) > 1 else results[0]
 
-    def guard(self, *args, **kwargs):
+    def guard(self, *args: Any, **kwargs: Any) -> ProxyMixer:
         """Abstract method. In some backends used for prevent object creation.
 
         :returns: A Proxy to mixer
@@ -816,7 +852,9 @@ class Mixer(_.with_metaclass(_MetaMixer)):
         """
         return ProxyMixer(self, count=1, guards=(args, kwargs))
 
-    def _guard(self, scheme, guards, **values):
+    def _guard(
+        self, scheme: ModelBase, guards: Tuple[Tuple[()], Dict[str, str]], **values: Any
+    ) -> Any:
         type_mixer = self.get_typemixer(scheme)
         args, kwargs = guards
         seek = type_mixer.guard(*args, **kwargs)

@@ -18,14 +18,11 @@ import datetime
 import decimal
 
 from .. import mix_types as t
-from ..main import (
-    TypeMixer as BaseTypeMixer,
-    Mixer as BaseMixer,
-    SKIP_VALUE,
-    GenFactory as BaseFactory,
-    partial,
-    faker,
-)
+from ..main import SKIP_VALUE
+from ..main import GenFactory as BaseFactory
+from ..main import Mixer as BaseMixer
+from ..main import TypeMixer as BaseTypeMixer
+from ..main import faker, partial
 
 
 def get_relation(_scheme=None, _typemixer=None, **params):

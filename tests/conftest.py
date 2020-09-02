@@ -12,14 +12,12 @@ def pytest_collection_finish(session):
     world before importing pyannotate.
     """
     from pyannotate_runtime import collect_types
-
     collect_types.init_types_collection()
 
 
 @pytest.fixture(autouse=True)
 def collect_types_fixture():
     from pyannotate_runtime import collect_types
-
     collect_types.start()
     yield
     collect_types.stop()
@@ -27,5 +25,4 @@ def collect_types_fixture():
 
 def pytest_sessionfinish(session, exitstatus):
     from pyannotate_runtime import collect_types
-
     collect_types.dump_stats("type_info.json")

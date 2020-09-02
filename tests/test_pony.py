@@ -1,8 +1,8 @@
 import sys
+from datetime import datetime
+from decimal import Decimal
 
 import pytest
-from decimal import Decimal
-from datetime import datetime
 
 pytestmark = pytest.mark.skipif(
     sys.version_info > (2, 8), reason="Pony doesnt support python3"

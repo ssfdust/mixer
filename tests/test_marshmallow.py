@@ -22,12 +22,23 @@ class Pet(ma.Schema):
     awards = ma.fields.List(ma.fields.Str)
 
 
+class PetList(ma.Schema):
+
+    lst = ma.fields.List(ma.fields.Nested(Pet))
+
+
 @pytest.fixture
 def mixer():
     from mixer.backend.marshmallow import Mixer
 
     return Mixer(required=True)
 
+
+@pytest.fixture
+def nested_mixer():
+    from mixer.backend.marshmallow import NestedMixer
+
+    return NestedMixer(required=True)
 
 def test_mixer(mixer):
     person = mixer.blend(Person)
@@ -42,3 +53,9 @@ def test_mixer(mixer):
     assert pet["animal_type"] == "cat"
     assert pet["owner"]
     assert pet["awards"] is not None
+
+
+def test_nested_mixer(nested_mixer):
+    res = nested_mixer.blend(PetList)
+    assert len(res['lst']) > 0
+    assert res['lst'][0]['name']
